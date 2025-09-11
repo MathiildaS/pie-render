@@ -18,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/MathiildaS/pie-meter/issues"
   },
-  "homepage": "https://github.com/MathiildaS/pie-meter#readme"
+  "homepage": "https://github.com/MathiildaS/pie-meter#readme",
+  "devDependencies": {
+    "@eslint/css": "^0.11.0",
+    "@eslint/js": "^9.35.0",
+    "@eslint/json": "^0.13.2",
+    "@eslint/markdown": "^7.2.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.4.0"
+  }
 }
