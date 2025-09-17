@@ -6,7 +6,7 @@
  */
 
 export class DrawPie {
-    constructor() {
+    constructor(canvasEl) {
 
     }
 }
