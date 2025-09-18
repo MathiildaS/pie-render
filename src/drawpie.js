@@ -38,4 +38,8 @@ export class DrawPie {
     this.#ctx.fill()
     this.#ctx.stroke()
   }
+
+  createSlice(startAngle, endAngle) {
+    this.#ctx.beginPath();
+  }
 }
