@@ -68,12 +68,12 @@ export class ConvertInput {
    */
   addInput(inputValue) {
     if (isNaN(inputValue) || inputValue < 0) {
-    throw new Error("The given input value must be a number larger than zero")
+      throw new Error("The given input value must be a number larger than zero")
     }
-    
+
     this.#inputValue = inputValue
     const percentValue = this.#convertToPercent(inputValue)
     const { sliceStartAngle, endAngle } = this.#calculateSliceAngles(percentValue)
     return { sliceStartAngle, endAngle, percentValue }
-  }  
+  }
 }
