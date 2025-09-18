@@ -68,6 +68,7 @@ export class ConvertInput {
 
   /**
    * This method adds a new input value and calculates the corresponding slice angles.
+   * Validates the input value to ensure it is a number larger than zero.
    *
    * @param {number} inputValue - The value to be added.
    * @returns { sliceStartAngle: number, endAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
