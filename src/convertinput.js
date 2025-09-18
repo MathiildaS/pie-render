@@ -1,5 +1,5 @@
 /**
- * This class converts input values to percentages based on given base-value.
+ * This module provides a class to convert input values into percentages and angles for pie chart slices.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 0.0.1
