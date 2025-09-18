@@ -7,9 +7,15 @@
 
 export class ConvertInput {
 #baseValue
-#inputValues
+#inputValue
 
     constructor(baseValue) {
         this.#baseValue = baseValue
+    }
+
+    convertToPercent(inputValue) {
+        this.#inputValue = inputValue
+        const percentValue = (this.#inputValue / this.#baseValue) * 100
+        return percentValue
     }
 }
