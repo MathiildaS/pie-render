@@ -25,7 +25,7 @@ export class ConvertInput {
    * @param {number} inputValue - The value to be converted to percentage.
    * @returns {number} percentValue - The value converted to percentage.
    */
-  convertToPercent(inputValue) {
+  #convertToPercent(inputValue) {
     this.#inputValue = inputValue
     const percentValue = (this.#inputValue / this.#baseValue) * 100
     return percentValue
@@ -37,7 +37,7 @@ export class ConvertInput {
    * @param {number} percentValue - The value in percentage to be converted to angle.
    * @returns {number} angleValue - The value converted to angle in radians.
    */
-  convertToAngle(percentValue) {
+  #convertToAngle(percentValue) {
     const angleValue = (percentValue / 100) * 2 * Math.PI
     return angleValue
   }
@@ -48,8 +48,8 @@ export class ConvertInput {
    * @param {number} percentValue - The value in percentage to be converted to slice angles.
    * @returns { sliceStartAngle: number, endAngle: number } - The start and end angles of the slice.
    */
-  calculateSliceAngles(percentValue) {
-    const sliceAngle = this.convertToAngle(percentValue)
+  #calculateSliceAngles(percentValue) {
+    const sliceAngle = this.#convertToAngle(percentValue)
     const sliceStartAngle = this.#startAngle
     const endAngle = sliceStartAngle + sliceAngle
     this.#startAngle = endAngle
@@ -63,8 +63,8 @@ export class ConvertInput {
    * @returns { sliceStartAngle: number, endAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
    */
   addInput(inputValue) {
-    const percentValue = this.convertToPercent(inputValue)
-    const { sliceStartAngle, endAngle } = this.calculateSliceAngles(percentValue)
+    const percentValue = this.#convertToPercent(inputValue)
+    const { sliceStartAngle, endAngle } = this.#calculateSliceAngles(percentValue)
     return { sliceStartAngle, endAngle, percentValue }
   }  
 }
