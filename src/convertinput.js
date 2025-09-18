@@ -67,6 +67,11 @@ export class ConvertInput {
    * @returns { sliceStartAngle: number, endAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
    */
   addInput(inputValue) {
+    if (isNaN(inputValue) || inputValue < 0) {
+    throw new Error("The given input value must be a number larger than zero")
+    }
+    
+    this.#inputValue = inputValue
     const percentValue = this.#convertToPercent(inputValue)
     const { sliceStartAngle, endAngle } = this.#calculateSliceAngles(percentValue)
     return { sliceStartAngle, endAngle, percentValue }
