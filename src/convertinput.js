@@ -48,6 +48,7 @@ export class ConvertInput {
 
   /**
    * This method calculates the start and end angles for a slice based on the given percentage value.
+   * Handles cases where the end angle exceeds the maximum angle.
    *
    * @param {number} percentValue - The value in percentage to be converted to slice angles.
    * @returns { sliceStartAngle: number, endAngle: number } - The start and end angles of the slice.
@@ -55,7 +56,12 @@ export class ConvertInput {
   #calculateSliceAngles(percentValue) {
     const sliceAngle = this.#convertToAngle(percentValue)
     const sliceStartAngle = this.#startAngle
-    const endAngle = sliceStartAngle + sliceAngle
+    let endAngle = sliceStartAngle + sliceAngle
+
+    if (endAngle > 2 * Math.PI) {
+      endAngle = 2 * Math.PI
+    }
+
     this.#startAngle = endAngle
     return { sliceStartAngle, endAngle }
   }
@@ -74,6 +80,7 @@ export class ConvertInput {
     this.#inputValue = inputValue
     const percentValue = this.#convertToPercent(inputValue)
     const { sliceStartAngle, endAngle } = this.#calculateSliceAngles(percentValue)
+
     return { sliceStartAngle, endAngle, percentValue }
   }
 }
