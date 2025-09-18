@@ -20,7 +20,7 @@ export class DrawPie {
     const centerXCoord = this.#canvas.width / 2
     const centerYCoord = this.#canvas.height / 2
 
-    const canvasRadie = Math.min(this.#canvas.width, this.#canvas.height) / 2
+    const canvasRadie = (Math.min(this.#canvas.width, this.#canvas.height) / 2) - 10
     const firstAngle = 0
     const lastAngle = 2 * Math.PI
 
