@@ -40,6 +40,23 @@ export class DrawPie {
   }
 
   createSlice(startAngle, endAngle) {
-    this.#ctx.beginPath();
+    this.#ctx.beginPath()
+
+    const centerXCoord = this.#canvas.width / 2
+    const centerYCoord = this.#canvas.height / 2
+    const canvasRadie = (Math.min(this.#canvas.width, this.#canvas.height) / 2) - 10
+
+    this.#ctx.moveTo(centerXCoord, centerYCoord)
+    this.#ctx.arc(
+      centerXCoord,
+      centerYCoord,
+      canvasRadie,
+      startAngle,
+      endAngle
+    )
+    this.#ctx.closePath()
+    this.#ctx.fillStyle = "#ff0000ff"
+    this.#ctx.fill()
+    this.#ctx.stroke()
   }
 }
