@@ -39,7 +39,7 @@ export class DrawPie {
     this.#ctx.stroke()
   }
 
-  createSlice(startAngle, endAngle) {
+  createSlice({sliceStartAngle, endAngle}) {
     this.#ctx.beginPath()
 
     const centerXCoord = this.#canvas.width / 2
@@ -51,7 +51,7 @@ export class DrawPie {
       centerXCoord,
       centerYCoord,
       canvasRadie,
-      startAngle,
+      sliceStartAngle,
       endAngle
     )
     this.#ctx.closePath()
