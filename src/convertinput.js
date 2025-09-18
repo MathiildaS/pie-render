@@ -11,12 +11,16 @@ export class ConvertInput {
   #startAngle = 0
 
   /**
-   * This constructor initializes the class with a base value.
+   * This constructor initializes the class with a base value and validates it.
    *
    * @param {number} baseValue - The value that represents 100%.
    */
   constructor(baseValue) {
     this.#baseValue = baseValue
+
+    if (this.#baseValue <= 0 || isNaN(this.#baseValue)) {
+      throw new Error("The given base value must be a number larger than zero")
+    }
   }
 
   /**
