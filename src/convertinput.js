@@ -55,4 +55,16 @@ export class ConvertInput {
     this.#startAngle = endAngle
     return { sliceStartAngle, endAngle }
   }
+
+  /**
+   * This method adds a new input value and calculates the corresponding slice angles.
+   *
+   * @param {number} inputValue - The value to be added.
+   * @returns { sliceStartAngle: number, endAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
+   */
+  addInput(inputValue) {
+    const percentValue = this.convertToPercent(inputValue)
+    const { sliceStartAngle, endAngle } = this.calculateSliceAngles(percentValue)
+    return { sliceStartAngle, endAngle, percentValue }
+  }  
 }
