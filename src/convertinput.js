@@ -6,5 +6,10 @@
  */
 
 export class ConvertInput {
+#baseValue
+#inputValues
 
+    constructor(baseValue) {
+        this.#baseValue = baseValue
+    }
 }
