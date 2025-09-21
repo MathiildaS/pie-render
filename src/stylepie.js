@@ -41,4 +41,12 @@ export class StylePie {
     get warningColor() {
         return this.#warningColor
     }
+
+    /**
+     * Sets the warning colour for when the pie is in a warning state.
+     * @param {string} value - The colour value.
+     */
+    set warningColor(value) {
+        this.#warningColor = value
+    }
 }
