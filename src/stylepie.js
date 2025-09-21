@@ -6,5 +6,16 @@
  */
 
 export class StylePie {
+    #pieColour
+    #warningColor
+    #dangerColor
 
+    /**
+     * Creates an instance of the StylePie class with default styles.
+     */
+    constructor() {
+        this.#pieColour = "#66d675ff"
+        this.#warningColor = "#ffff00ff"
+        this.#dangerColor = "#ff0000ff"
+    }
 }
