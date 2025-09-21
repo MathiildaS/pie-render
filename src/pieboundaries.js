@@ -25,9 +25,13 @@ export class PieBoundaries {
   }
 
   /**
-   * Sets the warning boundary value.
+   * Validates and sets the warning boundary value.
    */
   set warning(value) {
+    if (value <= 0 || isNaN(value)) {
+    throw new Error("The given boundary must be a number larger than zero")
+    }
+
     this.#warning = value
   }
   }
