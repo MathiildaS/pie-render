@@ -9,6 +9,7 @@ export class StylePie {
     #pieColour
     #warningColor
     #dangerColor
+    #sliceColor
 
     /**
      * Creates an instance of the StylePie class with default styles.
@@ -17,6 +18,7 @@ export class StylePie {
         this.#pieColour = "#66d675ff"
         this.#warningColor = "#ffff00ff"
         this.#dangerColor = "#ff0000ff"
+        this.#sliceColor = "#f0f0f0ff"
     }
 
     /**
@@ -82,5 +84,13 @@ export class StylePie {
         } 
 
         return pieStyle
+    }
+
+    /**
+     * Gets the style of a pie slice.
+     * @returns {string} - The colour of a pie slice.
+     */
+    sliceStyle() {
+        return this.#sliceColor
     }
 }
