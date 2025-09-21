@@ -90,7 +90,15 @@ export class StylePie {
      * Gets the style of a pie slice.
      * @returns {string} - The colour of a pie slice.
      */
-    sliceStyle() {
+    get sliceStyle() {
         return this.#sliceColor
+    }
+
+    /**
+     * Sets the style of a pie slice.
+     * @param {string} value - The colour value.
+     */
+    set sliceStyle(value) {
+        this.#sliceColor = value
     }
 }
