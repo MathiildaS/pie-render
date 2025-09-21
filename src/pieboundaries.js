@@ -46,6 +46,9 @@ export class PieBoundaries {
    * Sets the danger boundary value.
    */
   set danger(value) {
+    if (value <= 0 || isNaN(value)) {
+    throw new Error("The given boundary must be a number larger than zero")
+    }
     this.#danger = value
   }
 }
