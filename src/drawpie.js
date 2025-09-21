@@ -1,5 +1,6 @@
 /**
- * This class handles the drawing of a circle in canvas.
+ * This module exports the DrawPie class that is used to draw a circular pie chart on a canvas element.
+ * The class provides methods to create the pie chart and its slices.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 0.0.1
@@ -9,11 +10,21 @@ export class DrawPie {
   #canvas
   #ctx
 
+  /**
+   * Creates an instance of the DrawPie class.
+   * Initializes the canvas and its 2D rendering context.
+   *
+   * @param {HTMLCanvasElement} canvasEl - The canvas element to draw on.
+   */
   constructor(canvasEl) {
     this.#canvas = canvasEl
     this.#ctx = canvasEl.getContext("2d")
   }
 
+  /**
+   * Draws a filled circle on the canvas.
+   * The circle is always centered in the canvas.
+   */
   createPie() {
     this.#ctx.beginPath();
 
@@ -39,7 +50,14 @@ export class DrawPie {
     this.#ctx.stroke()
   }
 
-  createSlice({sliceStartAngle, endAngle}) {
+  /**
+   * Draws a slice of the pie chart on the canvas based on the provided parameters.
+   *
+   * @param {Object} - The parameters for the slice.
+   * @param {number} sliceStartAngle - The starting angle of the slice.
+   * @param {number} sliceEndAngle - The ending angle of the slice.
+   */
+  createSlice({sliceStartAngle, sliceEndAngle}) {
     this.#ctx.beginPath()
 
     const centerXCoord = this.#canvas.width / 2
@@ -52,7 +70,7 @@ export class DrawPie {
       centerYCoord,
       canvasRadie,
       sliceStartAngle,
-      endAngle
+      sliceEndAngle
     )
     this.#ctx.closePath()
     this.#ctx.fillStyle = "#ff0000ff"
