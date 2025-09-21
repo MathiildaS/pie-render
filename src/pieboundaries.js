@@ -23,4 +23,11 @@ export class PieBoundaries {
   get warning() {
     return this.#warning
   }
-}
+
+  /**
+   * Sets the warning boundary value.
+   */
+  set warning(value) {
+    this.#warning = value
+  }
+  }
