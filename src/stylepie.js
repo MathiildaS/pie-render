@@ -56,4 +56,12 @@ export class StylePie {
     get dangerColor() {
         return this.#dangerColor
     }
+
+    /**
+     * Sets the danger colour for when the pie is in a danger state.
+     * @param {string} value - The colour value.
+     */
+    set dangerColor(value) {
+        this.#dangerColor = value
+    }
 }
