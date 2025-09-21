@@ -18,4 +18,11 @@ export class StylePie {
         this.#warningColor = "#ffff00ff"
         this.#dangerColor = "#ff0000ff"
     }
+
+    /**
+     * Gets the colour of the pie.
+     */
+    get pieColour() {
+        return this.#pieColour
+    }
 }
