@@ -25,4 +25,13 @@ export class StylePie {
     get pieColour() {
         return this.#pieColour
     }
+
+    /**
+     * Sets the colour of the pie.
+     *
+     * @param {string} value - The colour value.
+     */
+    set pieColour(value) {
+        this.#pieColour = value
+    }
 }
