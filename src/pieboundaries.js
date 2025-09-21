@@ -16,4 +16,11 @@ export class PieBoundaries {
     this.#warning = 50
     this.#danger = 20
   }
+
+  /**
+   * Gets the warning boundary value.
+   */
+  get warning() {
+    return this.#warning
+  }
 }
