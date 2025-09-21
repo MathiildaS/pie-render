@@ -51,4 +51,20 @@ export class PieBoundaries {
     }
     this.#danger = value
   }
+
+  /**
+   * Determines the state of the pie based on the current percentage value.
+   *
+   * @param {number} percentValue - The current value in percentage.
+   * @return {string} - The state of the pie: 'ok', 'warning' or 'danger'.
+   */
+  getBoundaries(percentValue) {
+    if (percentValue >= this.#danger) {
+      return 'danger'
+    } else if (percentValue >= this.#warning) {
+      return 'warning'
+    } else {
+      return 'ok'
+    }
+  }
 }
