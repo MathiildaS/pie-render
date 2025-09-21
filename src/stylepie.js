@@ -49,4 +49,11 @@ export class StylePie {
     set warningColor(value) {
         this.#warningColor = value
     }
+
+    /**
+     * Gets the danger colour.
+     */
+    get dangerColor() {
+        return this.#dangerColor
+    }
 }
