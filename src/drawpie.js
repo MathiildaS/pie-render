@@ -9,8 +9,6 @@
 export class DrawPie {
   #canvas
   #ctx
-  #fillStyleColour
-  #fillStrokeColour
 
   /**
    * Creates an instance of the DrawPie class.
@@ -21,15 +19,13 @@ export class DrawPie {
   constructor(canvasEl) {
     this.#canvas = canvasEl
     this.#ctx = canvasEl.getContext("2d")
-    this.#fillStyleColour = "#d4d4d4ff"
-    this.#fillStrokeColour = "#000000"
   }
 
   /**
    * Draws a filled circle on the canvas.
    * The circle is always centered in the canvas.
    */
-  createPie() {
+  createPie(pieColour = "#8ab864ff") {
     this.#ctx.beginPath();
 
     const centerXCoord = this.#canvas.width / 2
@@ -48,8 +44,8 @@ export class DrawPie {
     )
 
     this.#ctx.closePath()
-    this.#ctx.strokeStyle = this.#fillStrokeColour
-    this.#ctx.fillStyle = this.#fillStyleColour
+    this.#ctx.strokeStyle = "#000000"
+    this.#ctx.fillStyle = pieColour
     this.#ctx.fill()
     this.#ctx.stroke()
   }
@@ -61,7 +57,7 @@ export class DrawPie {
    * @param {number} sliceStartAngle - The starting angle of the slice.
    * @param {number} sliceEndAngle - The ending angle of the slice.
    */
-  createSlice({sliceStartAngle, sliceEndAngle}) {
+  createSlice({sliceStartAngle, sliceEndAngle, sliceColour = "#d4d4d4ff"}) {
     this.#ctx.beginPath()
 
     const centerXCoord = this.#canvas.width / 2
@@ -77,8 +73,9 @@ export class DrawPie {
       sliceEndAngle
     )
     this.#ctx.closePath()
-    this.#ctx.fillStyle = "#ff0000ff"
+    this.#ctx.fillStyle = sliceColour
     this.#ctx.fill()
+    this.#ctx.strokeStyle = sliceColour
     this.#ctx.stroke()
   }
 }
