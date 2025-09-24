@@ -24,6 +24,15 @@ export class ConvertInput {
   }
 
   /**
+   * Returns the base value.
+   * 
+   * @returns {number} - The base value.
+   */
+  get baseValue() {
+    return this.#baseValue
+  }
+
+  /**
    * This method converts an input value to a percentage based on the base value.
    *
    * @param {number} inputValue - The value to be converted to percentage.
@@ -83,5 +92,9 @@ export class ConvertInput {
     const { sliceStartAngle, sliceEndAngle } = this.#calculateSliceAngles(percentValue)
 
     return { sliceStartAngle, sliceEndAngle, percentValue }
+  }
+
+  get baseValue() {
+    return this.#baseValue
   }
 }
