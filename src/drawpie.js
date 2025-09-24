@@ -26,6 +26,8 @@ export class DrawPie {
    * The circle is always centered in the canvas.
    */
   createPie(pieColour = "#8ab864ff") {
+    this.clearCanvas()
+
     this.#ctx.beginPath();
 
     const centerXCoord = this.#canvas.width / 2
