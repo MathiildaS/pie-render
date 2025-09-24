@@ -1,6 +1,12 @@
+import { DrawPie } from "../src/drawpie.js"
 import { ConvertInput } from "../src/convertinput.js"
 
-const converter = new ConvertInput(200)
-console.log(converter.addInput(50))
-console.log(converter.addInput(75))
-console.log(converter.addInput(25))
+const canvas = document.getElementById("myCanvas")
+const drawPie = new DrawPie(canvas)
+drawPie.createPie()
+
+const convertValues = new ConvertInput(2000)
+
+drawPie.createSlice(convertValues.addInput(50))
+drawPie.createSlice(convertValues.addInput(75))
+drawPie.createSlice(convertValues.addInput(25))
