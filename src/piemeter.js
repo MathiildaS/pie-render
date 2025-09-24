@@ -13,4 +13,28 @@ import { StylePie } from "./stylepie.js"
 
 export class PieMeter {
 
+
+    createPie(){
+
+    }
+
+    createSlice() {
+
+    }
+
+    addPieBoundaries() {
+
+    }
+
+    addPieColour() {
+
+    }
+
+    addSliceColour() {
+
+    }
+
+    addPieBoundariesColours() {
+        
+    }
 }
