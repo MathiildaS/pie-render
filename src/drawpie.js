@@ -9,6 +9,8 @@
 export class DrawPie {
   #canvas
   #ctx
+  #fillStyleColour
+  #fillStrokeColour
 
   /**
    * Creates an instance of the DrawPie class.
@@ -19,6 +21,8 @@ export class DrawPie {
   constructor(canvasEl) {
     this.#canvas = canvasEl
     this.#ctx = canvasEl.getContext("2d")
+    this.#fillStyleColour = "#d4d4d4ff"
+    this.#fillStrokeColour = "#000000"
   }
 
   /**
@@ -44,8 +48,8 @@ export class DrawPie {
     )
 
     this.#ctx.closePath()
-    this.#ctx.strokeStyle = "#000000"
-    this.#ctx.fillStyle = "#d4d4d4ff"
+    this.#ctx.strokeStyle = this.#fillStrokeColour
+    this.#ctx.fillStyle = this.#fillStyleColour
     this.#ctx.fill()
     this.#ctx.stroke()
   }
