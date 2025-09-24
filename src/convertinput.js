@@ -74,7 +74,7 @@ export class ConvertInput {
    * @returns { sliceStartAngle: number, sliceEndAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
    */
   addInput(inputValue) {
-    if (isNaN(inputValue) || inputValue < 0) {
+    if (isNaN(inputValue) || inputValue <= 0) {
       throw new Error("The given input value must be a number larger than zero")
     }
 
