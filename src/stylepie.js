@@ -68,13 +68,14 @@ export class StylePie {
     }
 
     /**
-     * Gets the style of the pie based on the current value and thresholds.
-     * @param {number} percentValue - The current percentage value.
+     * Gets the style of the pie based on the current value and boundaries.
+     *
+     * @param {number} remainingPercentValue - The remaining percentage value of the pie.
      * @param {PieBoundaries} pieBoundaries - The PieBoundaries instance containing values of pie boundaries.
      * @returns {string} - The colour style of the pie.
      */
-    getPieStyle(percentValue, pieBoundaries) {
-        let pieStatus = pieBoundaries.getBoundaries(percentValue)
+    getPieStyle(remainingPercentValue, pieBoundaries) {
+        let pieStatus = pieBoundaries.getBoundaries(remainingPercentValue)
         let pieStyle = this.#pieColour
 
         if (pieStatus === 'danger') {
