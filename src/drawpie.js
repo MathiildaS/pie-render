@@ -78,4 +78,11 @@ export class DrawPie {
     this.#ctx.strokeStyle = sliceColour
     this.#ctx.stroke()
   }
+
+  /**
+   * Clears the canvas.
+   */
+  clearCanvas() {
+    this.#ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height)
+  }
 }
