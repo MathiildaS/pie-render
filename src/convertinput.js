@@ -51,19 +51,19 @@ export class ConvertInput {
    * Handles cases where the end angle exceeds the maximum angle.
    *
    * @param {number} percentValue - The value in percentage to be converted to slice angles.
-   * @returns { sliceStartAngle: number, endAngle: number } - The start and end angles of the slice.
+   * @returns { sliceStartAngle: number, sliceEndAngle: number } - The start and end angles of the slice.
    */
   #calculateSliceAngles(percentValue) {
     const sliceAngle = this.#convertToAngle(percentValue)
     const sliceStartAngle = this.#startAngle
-    let endAngle = sliceStartAngle + sliceAngle
+    let sliceEndAngle = sliceStartAngle + sliceAngle
 
-    if (endAngle > 2 * Math.PI) {
-      endAngle = 2 * Math.PI
+    if (sliceEndAngle > 2 * Math.PI) {
+      sliceEndAngle = 2 * Math.PI
     }
 
-    this.#startAngle = endAngle
-    return { sliceStartAngle, endAngle }
+    this.#startAngle = sliceEndAngle
+    return { sliceStartAngle, sliceEndAngle }
   }
 
   /**
@@ -71,17 +71,17 @@ export class ConvertInput {
    * Validates the input value to ensure it is a number larger than zero.
    *
    * @param {number} inputValue - The value to be added.
-   * @returns { sliceStartAngle: number, endAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
+   * @returns { sliceStartAngle: number, sliceEndAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
    */
   addInput(inputValue) {
-    if (isNaN(inputValue) || inputValue < 0) {
+    if (isNaN(inputValue) || inputValue <= 0) {
       throw new Error("The given input value must be a number larger than zero")
     }
 
     this.#inputValue = inputValue
     const percentValue = this.#convertToPercent(inputValue)
-    const { sliceStartAngle, endAngle } = this.#calculateSliceAngles(percentValue)
+    const { sliceStartAngle, sliceEndAngle } = this.#calculateSliceAngles(percentValue)
 
-    return { sliceStartAngle, endAngle, percentValue }
+    return { sliceStartAngle, sliceEndAngle, percentValue }
   }
 }
