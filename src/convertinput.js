@@ -10,6 +10,7 @@ export class ConvertInput {
   #inputValue = 0
   #startAngle = 0
   #totalAddedInputValues = 0
+  #remainingPercent = 100
 
   /**
    * This constructor initializes the class with a base value and validates it.
@@ -82,8 +83,8 @@ export class ConvertInput {
    * @returns {number} - The remaining percentage value of the given base value.
    */
   #calculateRemainingPercent() {
-    const remainingPercent = Math.max(0, 100 - (this.#totalAddedInputValues / this.#baseValue) * 100)
-    return remainingPercent
+    this.#remainingPercent = Math.max(0, 100 - (this.#totalAddedInputValues / this.#baseValue) * 100)
+    return this.#remainingPercent
   }
 
   /**
@@ -121,5 +122,9 @@ export class ConvertInput {
 
   get startAngle() {
     return this.#startAngle
+  }
+
+  get remainingPercent() {
+    return this.#remainingPercent
   }
 }
