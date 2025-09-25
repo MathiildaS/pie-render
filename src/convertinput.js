@@ -7,8 +7,12 @@
 
 export class ConvertInput {
   #baseValue
-  #inputValue
+  #inputValue = 0
   #startAngle = 0
+  #sliceStartAngle = 0
+  #sliceEndAngle = 0
+  #totalAddedInputValues = 0
+  #remainingPercent = 100
 
   /**
    * This constructor initializes the class with a base value and validates it.
@@ -21,6 +25,15 @@ export class ConvertInput {
     if (this.#baseValue <= 0 || isNaN(this.#baseValue)) {
       throw new Error("The given base value must be a number larger than zero")
     }
+  }
+
+  /**
+   * Returns the base value.
+   * 
+   * @returns {number} - The base value.
+   */
+  get baseValue() {
+    return this.#baseValue
   }
 
   /**
@@ -55,15 +68,25 @@ export class ConvertInput {
    */
   #calculateSliceAngles(percentValue) {
     const sliceAngle = this.#convertToAngle(percentValue)
-    const sliceStartAngle = this.#startAngle
-    let sliceEndAngle = sliceStartAngle + sliceAngle
+    this.#sliceStartAngle = this.#startAngle
+    this.#sliceEndAngle = this.#sliceStartAngle + sliceAngle
 
-    if (sliceEndAngle > 2 * Math.PI) {
-      sliceEndAngle = 2 * Math.PI
+    if (this.#sliceEndAngle > 2 * Math.PI) {
+      this.#sliceEndAngle = 2 * Math.PI
     }
 
-    this.#startAngle = sliceEndAngle
-    return { sliceStartAngle, sliceEndAngle }
+    this.#startAngle = this.#sliceEndAngle
+    return { sliceStartAngle: this.#sliceStartAngle, sliceEndAngle: this.#sliceEndAngle }
+  }
+
+  /**
+   * Calculates the remaining percentage value based on the input value and base value.
+   * 
+   * @returns {number} - The remaining percentage value of the given base value.
+   */
+  #calculateRemainingPercent() {
+    this.#remainingPercent = Math.max(0, 100 - (this.#totalAddedInputValues / this.#baseValue) * 100)
+    return this.#remainingPercent
   }
 
   /**
@@ -77,11 +100,41 @@ export class ConvertInput {
     if (isNaN(inputValue) || inputValue <= 0) {
       throw new Error("The given input value must be a number larger than zero")
     }
+    
+    this.#totalAddedInputValues = this.#totalAddedInputValues + inputValue
 
-    this.#inputValue = inputValue
+    if (this.#totalAddedInputValues > this.#baseValue) {
+      throw new Error("The total added value cannot exceed the base value")
+    }
+
     const percentValue = this.#convertToPercent(inputValue)
-    const { sliceStartAngle, sliceEndAngle } = this.#calculateSliceAngles(percentValue)
+    const { sliceStartAngle, sliceEndAngle } = this.#calculateSliceAngles(percentValue)    
+    const remainingPercent = this.#calculateRemainingPercent()
 
-    return { sliceStartAngle, sliceEndAngle, percentValue }
+    return { sliceStartAngle, sliceEndAngle, percentValue, remainingPercent }
+  }
+
+  get totalAddedInputValues() {
+    return this.#totalAddedInputValues
+  }
+
+  get inputValue() {
+    return this.#inputValue
+  }
+
+  get startAngle() {
+    return this.#startAngle
+  }
+
+  get remainingPercent() {
+    return this.#remainingPercent
+  }
+
+  get sliceEndAngle() {
+    return this.#sliceEndAngle
+  }
+
+  get sliceStartAngle() {
+    return this.#sliceStartAngle
   }
 }

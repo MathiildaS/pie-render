@@ -7,18 +7,18 @@
 
 export class StylePie {
     #pieColour
-    #warningColor
-    #dangerColor
-    #sliceColor
+    #warningColour
+    #dangerColour
+    #sliceColour
 
     /**
      * Creates an instance of the StylePie class with default styles.
      */
     constructor() {
-        this.#pieColour = "#66d675ff"
-        this.#warningColor = "#ffff00ff"
-        this.#dangerColor = "#ff0000ff"
-        this.#sliceColor = "#f0f0f0ff"
+        this.#pieColour = "#66d675"
+        this.#warningColour = "#ffff00"
+        this.#dangerColour = "#ff0000"
+        this.#sliceColour = "#f0f0f0"
     }
 
     /**
@@ -40,31 +40,31 @@ export class StylePie {
     /**
      * Gets the warning colour.
      */
-    get warningColor() {
-        return this.#warningColor
+    get warningColour() {
+        return this.#warningColour
     }
 
     /**
      * Sets the warning colour for when the pie is in a warning state.
      * @param {string} value - The colour value.
      */
-    set warningColor(value) {
-        this.#warningColor = value
+    set warningColour(value) {
+        this.#warningColour = value
     }
 
     /**
      * Gets the danger colour.
      */
-    get dangerColor() {
-        return this.#dangerColor
+    get dangerColour() {
+        return this.#dangerColour
     }
 
     /**
      * Sets the danger colour for when the pie is in a danger state.
      * @param {string} value - The colour value.
      */
-    set dangerColor(value) {
-        this.#dangerColor = value
+    set dangerColour(value) {
+        this.#dangerColour = value
     }
 
     /**
@@ -79,9 +79,9 @@ export class StylePie {
         let pieStyle = this.#pieColour
 
         if (pieStatus === 'danger') {
-            pieStyle = this.#dangerColor
+            pieStyle = this.#dangerColour
         } else if (pieStatus === 'warning') {
-            pieStyle = this.#warningColor
+            pieStyle = this.#warningColour
         } 
 
         return pieStyle
@@ -91,15 +91,15 @@ export class StylePie {
      * Gets the style of a pie slice.
      * @returns {string} - The colour of a pie slice.
      */
-    get sliceStyle() {
-        return this.#sliceColor
+    get sliceColour() {
+        return this.#sliceColour
     }
 
     /**
      * Sets the style of a pie slice.
      * @param {string} value - The colour value.
      */
-    set sliceStyle(value) {
-        this.#sliceColor = value
+    set sliceColour(value) {
+        this.#sliceColour = value
     }
 }
