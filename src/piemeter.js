@@ -38,7 +38,23 @@ export class PieMeter {
     }
   }
 
-  removeSlice() {}
+  createSlice(inputValue) {
+    this.#inputConverter.addInput(inputValue)
+
+    const startAngle = this.#inputConverter.startAngle
+    const remainingPercent = this.#inputConverter.remainingPercent
+    const remainingPieColour = this.#pieStyle.getPieStyle(remainingPercent, this.#pieBoundaries)
+
+    this.#pieCanvas.createPie(this.#pieStyle.sliceColour)
+
+    if (startAngle < 2 * Math.PI) {
+      this.#pieCanvas.createSlice({
+        sliceStartAngle: startAngle,
+        sliceEndAngle: 2 * Math.PI,
+        sliceColour: remainingPieColour,
+      })
+    }
+  }
 
   addPieBoundaries() {}
 
