@@ -9,6 +9,8 @@ export class ConvertInput {
   #baseValue
   #inputValue = 0
   #startAngle = 0
+  #sliceStartAngle = 0
+  #sliceEndAngle = 0
   #totalAddedInputValues = 0
   #remainingPercent = 100
 
@@ -66,15 +68,15 @@ export class ConvertInput {
    */
   #calculateSliceAngles(percentValue) {
     const sliceAngle = this.#convertToAngle(percentValue)
-    const sliceStartAngle = this.#startAngle
-    let sliceEndAngle = sliceStartAngle + sliceAngle
+    this.#sliceStartAngle = this.#startAngle
+    this.#sliceEndAngle = this.#sliceStartAngle + sliceAngle
 
-    if (sliceEndAngle > 2 * Math.PI) {
-      sliceEndAngle = 2 * Math.PI
+    if (this.#sliceEndAngle > 2 * Math.PI) {
+      this.#sliceEndAngle = 2 * Math.PI
     }
 
-    this.#startAngle = sliceEndAngle
-    return { sliceStartAngle, sliceEndAngle }
+    this.#startAngle = this.#sliceEndAngle
+    return { sliceStartAngle: this.#sliceStartAngle, sliceEndAngle: this.#sliceEndAngle }
   }
 
   /**
@@ -126,5 +128,13 @@ export class ConvertInput {
 
   get remainingPercent() {
     return this.#remainingPercent
+  }
+
+  get sliceEndAngle() {
+    return this.#sliceEndAngle
+  }
+
+  get sliceStartAngle() {
+    return this.#sliceStartAngle
   }
 }
