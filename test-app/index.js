@@ -1,12 +1,13 @@
-import { DrawPie } from "../src/drawpie.js"
-import { ConvertInput } from "../src/convertinput.js"
+import { DrawPie } from "../../src/drawpie.js"
+import { ConvertInput } from "../../src/convertinput.js"
+import { StylePie } from "../../src/stylepie.js"
+import { PieBoundaries } from "../../src/pieboundaries.js"
 
 const canvas = document.getElementById("myCanvas")
 const drawPie = new DrawPie(canvas)
-drawPie.createPie()
+const stylePie = new StylePie()
+const pieBoundaries = new PieBoundaries()
 
-const convertValues = new ConvertInput(2000)
+const base = 2000
+const convertValues = new ConvertInput(base)
 
-drawPie.createSlice(convertValues.addInput(50))
-drawPie.createSlice(convertValues.addInput(75))
-drawPie.createSlice(convertValues.addInput(25))
