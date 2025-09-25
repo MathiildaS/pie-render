@@ -12,13 +12,16 @@ import { PieBoundaries } from "./pieboundaries.js"
 import { StylePie } from "./stylepie.js"
 
 export class PieMeter {
-
+#canvasPie
+#converter
+#boundaries
+#style
 
     createPie(){
 
     }
 
-    createSlice() {
+    removeSlice() {
 
     }
 
