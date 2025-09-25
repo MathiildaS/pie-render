@@ -1,0 +1,16 @@
+# Diff Details
+
+Date : 2025-09-25 13:11:23
+
+Directory c:\\Users\\mathi\\LNU\\1DV610\\pie-meter\\src
+
+Total : 1 files,  13 codes, 0 comments, 4 blanks, all 17 lines
+
+[Summary](results.md) / [Details](details.md) / [Diff Summary](diff.md) / Diff Details
+
+## Files
+| filename | language | code | comment | blank | total |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| [src/convertinput.js](/src/convertinput.js) | JavaScript | 13 | 0 | 4 | 17 |
+
+[Summary](results.md) / [Details](details.md) / [Diff Summary](diff.md) / Diff Details
