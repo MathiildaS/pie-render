@@ -12,32 +12,39 @@ import { PieBoundaries } from "./pieboundaries.js"
 import { StylePie } from "./stylepie.js"
 
 export class PieMeter {
-#canvasPie
-#converter
-#boundaries
-#style
+  #pieCanvas
+  #inputConverter
+  #pieBoundaries
+  #pieStyle
 
-    createPie(){
+  createPie(canvas, baseValue) {
+    this.#pieCanvas = new DrawPie(canvas)
+    this.#inputConverter = new ConvertInput(baseValue)
+    this.#pieBoundaries = new PieBoundaries()
+    this.#pieStyle = new StylePie()
 
+    const startAngle = this.#inputConverter.startAngle
+    const remainingPercent = this.#inputConverter.remainingPercent
+    const remainingPieColour = this.#pieStyle.getPieStyle(remainingPercent, this.#pieBoundaries)
+
+    this.#pieCanvas.createPie(this.#pieStyle.sliceColour)
+
+    if (startAngle < 2 * Math.PI) {
+      this.#pieCanvas.createSlice({
+        sliceStartAngle: startAngle,
+        sliceEndAngle: 2 * Math.PI,
+        sliceColour: remainingPieColour,
+      })
     }
+  }
 
-    removeSlice() {
+  removeSlice() {}
 
-    }
+  addPieBoundaries() {}
 
-    addPieBoundaries() {
+  addPieColour() {}
 
-    }
+  addSliceColour() {}
 
-    addPieColour() {
-
-    }
-
-    addSliceColour() {
-
-    }
-
-    addPieBoundariesColours() {
-        
-    }
+  addPieBoundariesColours() {}
 }

@@ -2,8 +2,9 @@ import { DrawPie } from "../../src/drawpie.js"
 import { ConvertInput } from "../../src/convertinput.js"
 import { StylePie } from "../../src/stylepie.js"
 import { PieBoundaries } from "../../src/pieboundaries.js"
+import { PieMeter } from "../../src/piemeter.js"
 
-// ------------TEST DrawPie-------------
+/** //------------TEST DrawPie-------------
 // Draw the initial pie by collecting the canvas element and create an instance of DrawPie.
 const canvas = document.getElementById("myCanvas")
 const drawPie = new DrawPie(canvas)
@@ -15,9 +16,10 @@ drawPie.createPie()
 drawPie.createSlice({sliceStartAngle: 0, sliceEndAngle: Math.PI })
 
 // Draw slice with red colour.
-drawPie.createSlice({sliceStartAngle: 0, sliceEndAngle: Math.PI, sliceColour: "#f30000" })
+drawPie.createSlice({sliceStartAngle: 0, sliceEndAngle: Math.PI, sliceColour: "#f30000" }) 
+*/
 
-// ----------TEST ConvertInput-----------
+/** // ----------TEST ConvertInput-----------
 // Test with base value of 200.
 const convertInput = new ConvertInput(200)
 console.log("Base value: " + convertInput.baseValue)
@@ -39,8 +41,9 @@ try {
 } catch (error) {
     console.error(error.message)
 }
+*/
 
-// ------------TEST StylePie-------------
+/** // ------------TEST StylePie-------------
 const stylePie = new StylePie()
 
 console.log("Default pie colour: " + stylePie.pieColour)
@@ -58,7 +61,9 @@ console.log("New slice colour: " + stylePie.sliceColour)
 console.log("New warning colour: " + stylePie.warningColour)
 console.log("New danger colour: " + stylePie.dangerColour)
 
-// ----------TEST PieBoundaries-----------
+*/
+
+/** // ----------TEST PieBoundaries-----------
 const pieBoundaries = new PieBoundaries()
 
 console.log("Default warning boundary: " + pieBoundaries.warning)
@@ -82,7 +87,9 @@ try {
     console.error(error.message)
 }
 
-// ----------TEST ALL TOGETHER-----------
+*/
+
+/** // ----------TEST ALL TOGETHER-----------
 // Clear canvas before drawing.
 drawPie.clearCanvas()
 
@@ -117,3 +124,11 @@ convertInput2.addInput(200)
 reDrawPie()
 convertInput2.addInput(80)
 reDrawPie()
+
+*/
+
+// ----------TEST PieMeter----------
+
+const pieMeter = new PieMeter()
+const canvas = document.getElementById('myCanvas')
+pieMeter.createPie(canvas, 500)
