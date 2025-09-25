@@ -114,4 +114,12 @@ export class ConvertInput {
   get totalAddedInputValues() {
     return this.#totalAddedInputValues
   }
+
+  get inputValue() {
+    return this.#inputValue
+  }
+
+  get startAngle() {
+    return this.#startAngle
+  }
 }
