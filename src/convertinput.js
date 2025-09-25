@@ -110,4 +110,8 @@ export class ConvertInput {
 
     return { sliceStartAngle, sliceEndAngle, percentValue, remainingPercent }
   }
+
+  get totalAddedInputValues() {
+    return this.#totalAddedInputValues
+  }
 }
