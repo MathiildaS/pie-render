@@ -77,4 +77,16 @@ export class PieMeter {
     this.#pieStyle.dangerColour = dangerColour
     return { warningColour: this.#pieStyle.warningColour, dangerColour: this.#pieStyle.dangerColour }
   }
+
+  getPieInfo() {
+    return {
+  pieColour: this.#pieStyle.pieColour,
+  sliceColour: this.#pieStyle.sliceColour,
+  warningBoundary: this.#pieBoundaries.warning,
+  dangerBoundary: this.#pieBoundaries.danger, 
+  warningBoundaryColour: this.#pieStyle.warningColour,
+  dangerBoundaryColour: this.#pieStyle.dangerColour,
+  remainingPercent: this.#inputConverter.remainingPercent
+    }
+  }
 }
