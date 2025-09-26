@@ -23,55 +23,34 @@ export class PieMeter {
     this.#pieBoundaries = new PieBoundaries()
     this.#pieStyle = new StylePie()
 
-    const startAngle = this.#inputConverter.startAngle
-    const remainingPercent = this.#inputConverter.remainingPercent
-    const remainingPieColour = this.#pieStyle.getPieStyle(remainingPercent, this.#pieBoundaries)
-
-    this.#pieCanvas.createPie(this.#pieStyle.sliceColour)
-
-    if (startAngle < 2 * Math.PI) {
-      this.#pieCanvas.createSlice({
-        sliceStartAngle: startAngle,
-        sliceEndAngle: 2 * Math.PI,
-        sliceColour: remainingPieColour,
-      })
-    }
+this.#drawPie()
   }
 
   createSlice(inputValue) {
     this.#inputConverter.addInput(inputValue)
-
-    const startAngle = this.#inputConverter.startAngle
-    const remainingPercent = this.#inputConverter.remainingPercent
-    const remainingPieColour = this.#pieStyle.getPieStyle(remainingPercent, this.#pieBoundaries)
-
-    this.#pieCanvas.createPie(this.#pieStyle.sliceColour)
-
-    if (startAngle < 2 * Math.PI) {
-      this.#pieCanvas.createSlice({
-        sliceStartAngle: startAngle,
-        sliceEndAngle: 2 * Math.PI,
-        sliceColour: remainingPieColour,
-      })
-    }
+this.#drawPie()
   }
 
   addPieBoundaries(warningBoundary, dangerBoundary) {
     this.#pieBoundaries.warning = warningBoundary
     this.#pieBoundaries.danger = dangerBoundary
+this.#drawPie()
   }
 
   addPieColour(colour) {
     this.#pieStyle.pieColour = colour
+this.#drawPie()
   }
 
   addSliceColour(colour) {
     this.#pieStyle.sliceColour = colour
+    this.drawPie()    
   }
 
   addPieBoundariesColours(warningColour, dangerColour) {
     this.#pieStyle.warningColour = warningColour
     this.#pieStyle.dangerColour = dangerColour
+    this.#drawPie()
   }
 
   getPieInfo() {
@@ -83,6 +62,22 @@ export class PieMeter {
   warningBoundaryColour: this.#pieStyle.warningColour,
   dangerBoundaryColour: this.#pieStyle.dangerColour,
   remainingPercent: this.#inputConverter.remainingPercent
+    }
+  }
+
+  #drawPie() {
+    const startAngle = this.#inputConverter.startAngle
+    const remainingPercent = this.#inputConverter.remainingPercent
+    const remainingPieColour = this.#pieStyle.getPieStyle(remainingPercent, this.#pieBoundaries)
+
+    this.#pieCanvas.createPie(this.#pieStyle.sliceColour)
+
+    if (startAngle < 2 * Math.PI) {
+      this.#pieCanvas.createSlice({
+        sliceStartAngle: startAngle,
+        sliceEndAngle: 2 * Math.PI,
+        sliceColour: remainingPieColour,
+      })
     }
   }
 }
