@@ -64,6 +64,7 @@ export class PieMeter {
 
   addPieColour(colour) {
     this.#pieStyle.pieColour = colour
+    return this.#pieStyle.pieColour
   }
 
   addSliceColour(colour) {
