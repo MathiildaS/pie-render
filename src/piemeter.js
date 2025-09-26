@@ -29,7 +29,7 @@ export class PieMeter {
     this.#pieBoundaries = new PieBoundaries()
     this.#pieStyle = new StylePie()
 
-this.#drawPie()
+this._drawPie()
   }
 
   /**
@@ -39,7 +39,7 @@ this.#drawPie()
    */
   createSlice(inputValue) {
     this.#inputConverter.addInput(inputValue)
-this.#drawPie()
+this._drawPie()
   }
 
   /**
@@ -52,7 +52,7 @@ this.#drawPie()
   addPieBoundaries(warningBoundary, dangerBoundary) {
     this.#pieBoundaries.warning = warningBoundary
     this.#pieBoundaries.danger = dangerBoundary
-this.#drawPie()
+this._drawPie()
   }
 
   /**
@@ -62,7 +62,7 @@ this.#drawPie()
    */
   addPieColour(colour) {
     this.#pieStyle.pieColour = colour
-this.#drawPie()
+this._drawPie()
   }
 
   /**
@@ -73,7 +73,7 @@ this.#drawPie()
    */
   addSliceColour(colour) {
     this.#pieStyle.sliceColour = colour
-    this.#drawPie()    
+    this._drawPie()    
   }
 
   /**
@@ -85,7 +85,7 @@ this.#drawPie()
   addPieBoundariesColours(warningColour, dangerColour) {
     this.#pieStyle.warningColour = warningColour
     this.#pieStyle.dangerColour = dangerColour
-    this.#drawPie()
+    this._drawPie()
   }
 
   /**
@@ -112,7 +112,7 @@ this.#drawPie()
    * setting the colour for the remaining pie using the StylePie instance and 
    * uses the DrawPie instance to render the pie and its slices on the canvas.
    */
-  #drawPie() {
+  _drawPie() {
     const startAngle = this.#inputConverter.startAngle
     const remainingPercent = this.#inputConverter.remainingPercent
     const remainingPieColour = this.#pieStyle.getPieStyle(remainingPercent, this.#pieBoundaries)
