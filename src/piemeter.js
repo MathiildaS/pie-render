@@ -59,23 +59,19 @@ export class PieMeter {
   addPieBoundaries(warningBoundary, dangerBoundary) {
     this.#pieBoundaries.warning = warningBoundary
     this.#pieBoundaries.danger = dangerBoundary
-    return { warning: this.#pieBoundaries.warning, danger: this.#pieBoundaries.danger }
   }
 
   addPieColour(colour) {
     this.#pieStyle.pieColour = colour
-    return this.#pieStyle.pieColour
   }
 
   addSliceColour(colour) {
     this.#pieStyle.sliceColour = colour
-    return this.#pieStyle.sliceColour
   }
 
   addPieBoundariesColours(warningColour, dangerColour) {
     this.#pieStyle.warningColour = warningColour
     this.#pieStyle.dangerColour = dangerColour
-    return { warningColour: this.#pieStyle.warningColour, dangerColour: this.#pieStyle.dangerColour }
   }
 
   getPieInfo() {
