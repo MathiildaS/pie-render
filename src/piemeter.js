@@ -56,7 +56,11 @@ export class PieMeter {
     }
   }
 
-  addPieBoundaries() {}
+  addPieBoundaries(warningBoundary, dangerBoundary) {
+    this.#pieBoundaries.warning = warningBoundary
+    this.#pieBoundaries.danger = dangerBoundary
+    return { warning: this.#pieBoundaries.warning, danger: this.#pieBoundaries.danger }
+  }
 
   addPieColour() {}
 
