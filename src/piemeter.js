@@ -62,7 +62,9 @@ export class PieMeter {
     return { warning: this.#pieBoundaries.warning, danger: this.#pieBoundaries.danger }
   }
 
-  addPieColour() {}
+  addPieColour(colour) {
+    this.#pieStyle.pieColour = colour
+  }
 
   addSliceColour() {}
 
