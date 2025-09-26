@@ -70,5 +70,9 @@ export class PieMeter {
     this.#pieStyle.sliceColour = colour
   }
 
-  addPieBoundariesColours() {}
+  addPieBoundariesColours(warningColour, dangerColour) {
+    this.#pieStyle.warningColour = warningColour
+    this.#pieStyle.dangerColour = dangerColour
+    return { warningColour: this.#pieStyle.warningColour, dangerColour: this.#pieStyle.dangerColour }
+  }
 }
