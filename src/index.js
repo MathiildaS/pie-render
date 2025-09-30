@@ -1,1 +1,2 @@
-export { PieMeter } from "./piemeter.js"
+import { PieRender } from "./pierender.js"
+export { PieRender }
