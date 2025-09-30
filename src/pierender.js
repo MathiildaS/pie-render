@@ -6,12 +6,12 @@
  * @version 1.0.0
  */
 
-import { DrawPie } from "./drawpie.js"
-import { ConvertInput } from "./convertinput.js"
+import { PieCanvas } from "./piecanvas.js"
+import { InputConverter } from "./inputconverter.js"
 import { PieBoundaries } from "./pieboundaries.js"
-import { StylePie } from "./stylepie.js"
+import { PieStyle } from "./piestyle.js"
 
-export class PieMeter {
+export class PieRender {
   #pieCanvas
   #inputConverter
   #pieBoundaries
@@ -24,10 +24,10 @@ export class PieMeter {
    * @param {number} baseValue - The base value converted to 100% and 2π (360 degrees).
    */
   createPie(canvas, baseValue) {
-    this.#pieCanvas = new DrawPie(canvas)
-    this.#inputConverter = new ConvertInput(baseValue)
+    this.#pieCanvas = new PieCanvas(canvas)
+    this.#inputConverter = new InputConverter(baseValue)
     this.#pieBoundaries = new PieBoundaries()
-    this.#pieStyle = new StylePie()
+    this.#pieStyle = new PieStyle()
 
 this._drawPie()
   }

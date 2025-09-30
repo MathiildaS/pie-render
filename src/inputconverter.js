@@ -5,7 +5,7 @@
  * @version 0.0.1
  */
 
-export class ConvertInput {
+export class InputConverter {
   #baseValue
   #inputValue = 0
   #startAngle = 0

@@ -5,7 +5,7 @@
  * @version 0.0.1
  */
 
-export class StylePie {
+export class PieStyle {
   #pieColour
   #warningColour
   #dangerColour

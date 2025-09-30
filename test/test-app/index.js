@@ -1,8 +1,8 @@
 import { DrawPie } from "../../src/drawpie.js"
-import { ConvertInput } from "../../src/convertinput.js"
-import { StylePie } from "../../src/stylepie.js"
+import { InputConverter } from "../../src/inputconverter.js"
+import { PieStyle } from "../../src/piestyle.js"
 import { PieBoundaries } from "../../src/pieboundaries.js"
-import { PieMeter } from "../../src/piemeter.js"
+import { PieRender } from "../../src/pierender.js"
 
 /** //------------TEST DrawPie-------------
 // Draw the initial pie by collecting the canvas element and create an instance of DrawPie.
@@ -129,7 +129,7 @@ reDrawPie()
 
 // ----------TEST PieMeter----------
 
-const pieMeter = new PieMeter()
+const pieMeter = new PieRender()
 const canvas = document.getElementById('myCanvas')
 pieMeter.createPie(canvas, 500)
 pieMeter.createSlice(200)
