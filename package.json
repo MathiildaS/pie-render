@@ -1,8 +1,15 @@
 {
-  "name": "pie-meter",
+  "name": "pie-render",
   "version": "1.0.0",
-  "description": "A simple lib that renders a circular pie on canvas.",
+  "description": "A simple lib that visualizes remaining and used values as a circular pie on a HTML canvas element.",
   "main": "index.js",
+    "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+  "index.js",
+  "pierender.js"
+],
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "start": "node index.js",
@@ -11,16 +18,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MathiildaS/pie-meter.git"
+    "url": "git+https://github.com/MathiildaS/pie-render.git"
   },
   "keywords": [],
-  "author": "Mathilda Segerlund",
+  "author": "Mathilda Segerlund <ms228qs@student.lnu.se>",
   "license": "MIT",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/MathiildaS/pie-meter/issues"
+    "url": "https://github.com/MathiildaS/pie-render/issues"
   },
-  "homepage": "https://github.com/MathiildaS/pie-meter#readme",
+  "homepage": "https://github.com/MathiildaS/pie-render#readme",
   "devDependencies": {
     "@eslint/css": "^0.11.0",
     "@eslint/js": "^9.35.0",
