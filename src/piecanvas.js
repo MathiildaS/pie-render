@@ -6,7 +6,7 @@
  * @version 0.0.1
  */
 
-export class DrawPie {
+export class PieCanvas {
   #canvas
   #ctx
 

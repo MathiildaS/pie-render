@@ -4,8 +4,10 @@
   "description": "A simple lib that renders a circular pie on canvas.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+    "start": "node index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,9 @@
     "@eslint/json": "^0.13.2",
     "@eslint/markdown": "^7.2.0",
     "eslint": "^9.35.0",
-    "globals": "^16.4.0"
+    "globals": "^16.4.0",
+    "jest": "^29.7.0",
+    "jest-canvas-mock": "^2.5.2",
+    "jest-environment-jsdom": "^29.7.0"
   }
 }
