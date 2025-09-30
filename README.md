@@ -4,7 +4,7 @@ A JavaScript library for a visual progress meter that displays remaining value a
 ## About
 pie-meter renders a circular pie that gradually shrinks as you add values against a chosen base amount. Unlike traditional pie charts used for static data visualization, pie-meter is designed for scenarios where you want to visualize remaining capacity. This makes it perfect for budgets, storage usage, displaying remaining lives in games, calorie tracking and more.
 
-The focus is on providing users with an immediate, visual overview of how much remains.
+The focus is on providing users with an immediate, visual overview of how much remains of a defined amount.
 
 ## Features
 - **Consumption tracking**. Add values and watch the pie shrink.
@@ -35,10 +35,10 @@ To run the tests, run
 npm test
 ```
 
-A complete test report can be found here.
+See [testreport](docs/testrapport.md) for details.
 
 ## Getting involved
-Please read the Contribution Guide for instructions on how to contribute to this project.
+Please read [the Contribution Guide](docs/CONTRIBUTING.md) for instructions on how to contribute to this project.
 
 ## Author
 Mathilda Segerlund - Web Development student at Linnaeus University, Sweden.
@@ -47,5 +47,4 @@ Mathilda Segerlund - Web Development student at Linnaeus University, Sweden.
 This project is licensed under the MIT License
 
 ## Feedback
-For further questions, feedback or suggestions, feel free to reach out via email:
-ms228qs@student.lnu.se
+For further questions, feedback or suggestions, feel free to [e-mail me](mailto:ms228qs@student.lnu.se)!
