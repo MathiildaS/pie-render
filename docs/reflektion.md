@@ -1,7 +1,14 @@
 # Reflektion - 1DV610, Laboration 2
 
 ## Reflektion kapitel 2 - Namngivning
-***Tabell här***
+| Namn | Förklaring | Reflektion |
+|------|------------|------------|
+| `ConvertInput`, `DrawPie`, `StylePie` | Klassnamn på tre moduler som konverterar användarvärden till procent och vinklar, ritar ”pajen”/cirkeln på canvas och sätter de visuella värdena. | Följer inte regeln att undvika verb i klassnamn **Avoid Verbs in Class Names**. Ändras till substantiv. |
+| `set warning(value)` | Metodnamn för metod som sätter värdet för ”varning”, den första gränsen i procent då ”pajen”/cirkeln ska ändra färg. | Metodens namn
+ avslöjar inte särskilt mycket. Ett värde för varning ska sättas, men är det en varnings-status, en gräns i siffror eller färgen som ”pajen”/cirkeln ska ändras till som representerar varning?  För att följa regeln **Add Meaningful Context** väljer jag därför att ändra till `set warningBoundary(percent)`.  |
+| `addPieBoundaries(warningBoundary, dangerBoundary)` | Metodnamn för metod som sätter gränsvärden för ”warning” och ”danger”. | Här väljer jag att byta ord från `add` till `set` för att undvika missförstånd, **Avoid Disinformation**. Det är inte värden som kommer att adderas vilket man skulle kunna tro, utan här *sätter* man värden för ”warning” och ”danger”. Utan kommentaren till metoden skulle man dessutom inte förstå att gränsvärdena ska anges i procent, vilket bryter mot **Use Intention-Revealing Names**. Trots att namnet blir längre väljer jag att lägga till `percent` för tydlighetens skull så att hela namnet blir `setPieBoundariesInPercent()`. |
+| `addSliceColour(colour)` | Metodnamn för metod som sätter färgen på ”pajen”/cirkeln. | Även här ändrar jag från `add` till `set` för att undvika missförstånd **Avoid Desinformation** och följa **One Word Per Concept**. Alla metoder som sätter värden börjar med `set`. |
+| `getPieInfo()` | Returnerar information om ”pajens” status (valda färger, gränsvärden,  återstående procent) | Ordet ”Info” säger egentligen inte vad som returneras och kan räknas som ett brusord, vilket bryter mot **Make Meaningful Distinctions**. Därför ändrar jag till `getCurrentStateOfPie()` för att tydligare visa att det är nuvarande tillstånd som returneras. |
 
 Jag försökte tänka på min namngivning redan innan jag påbörjade kodandet. Trots detta blev jag ändå tvungen att refaktorera många av mina metoder efter att ha läst kapitel 2. 
 
