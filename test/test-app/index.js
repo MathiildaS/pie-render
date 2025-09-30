@@ -1,6 +1,6 @@
 import { PieCanvas } from "../../src/piecanvas.js"
 import { InputConverter } from "../../src/inputconverter.js"
-import { PieStyle } from "../../src/piestyle.js"
+import { BoundariesStyle } from "../../src/boundarystyle.js"
 import { PieBoundaries } from "../../src/pieboundaries.js"
 import { PieRender } from "../../src/pierender.js"
 
@@ -216,4 +216,4 @@ console.log("Remaining percent: " + remainingPercent)*/
 //testCustomValues()
 //testCustomText()
 //testColourValidation()
-testNumberValidation()
+//testNumberValidation()

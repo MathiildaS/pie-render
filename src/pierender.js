@@ -9,7 +9,7 @@
 import { PieCanvas } from "./piecanvas.js"
 import { InputConverter } from "./inputconverter.js"
 import { PieBoundaries } from "./pieboundaries.js"
-import { PieStyle } from "./piestyle.js"
+import { BoundariesStyle } from "./boundarystyle.js"
 
 export class PieRender {
   #pieCanvas
@@ -27,7 +27,7 @@ export class PieRender {
     this.#pieCanvas = new PieCanvas(canvas)
     this.#inputConverter = new InputConverter(baseValue)
     this.#pieBoundaries = new PieBoundaries()
-    this.#pieStyle = new PieStyle()
+    this.#pieStyle = new BoundariesStyle()
 
 this._drawPie()
   }
