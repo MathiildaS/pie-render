@@ -1,8 +1,9 @@
-### Test report
-The project has been thoroughly tested using both manual and automated tests.
-Manual testing was carried out through a test application that verifies individual classes (DrawPie, ConvertInput, StylePie, PieBoundaries and PieMeter) as well as their combined behaviour.
+# Test report
+The project has been tested using both manual and automated tests.
+The manual tests verifies the functionality in all individual classes.
+The automates tests verifies the functionality of the PieRender class that combines the functionalities together. 
 
-Automated tests are implemented using Jest and covering key functionality and verifying that methods return the expected results during various scenarios.
+Click here to see a guide for manual testing.
 
 ## Manual tests - Results
 
