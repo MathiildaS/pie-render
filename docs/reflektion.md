@@ -17,14 +17,16 @@ Mina metodnamn är nu tydligare och förklarar både syfte och funktion. Jag vil
 
 En annan upptäckt som ställde till problem i min kod var en varierande stavning av ordet färg på engelska, color/colour. Här upptäckte jag vikten av att vara konsekvent i språket.
 
-Jag har försökt att vara noggrann under granskningen av min kod och tycker att jag nu följer många viktiga regler, som att använda namn som går att uttala och söka efter, som inte kräver någon mental mapping och använder inte ord som kan uppfattas som ”cute”. Jag är dessutom konsekvent i mina ordval. 
+Jag har försökt att vara noggrann under granskningen av min kod och tycker att jag nu följer många viktiga regler, som att använda namn som går att uttala och söka efter, som inte kräver någon mental mapping och använder inte ord som kan uppfattas som ”cute”, utan försöker använda begrepp från problemområdet eller etablerade tekniska termer där det går. Jag är dessutom konsekvent i mina ordval. 
 
 Sammanfattningsvis förstår jag hur till och med små justeringar i namngivning kan göra stor skillnad för både läsbarheten och förståelsen. En välfungerande funktionalitet går annars lätt förlorad.
 
 En återstående utmaning för mig är dock att hålla namn så enkla och precisa som möjligt. När jag har refaktorerat mina namn har jag inte lyckats göra dessa kortare, utan snarare längre för att var mer självförklarande. Jag tycker dock inte att det gör något i min kod då det har bidragit till att lättare läsa och förstå helheten av min modul.
 
 ## Reflektion kapitel 3 - Funktioner
-***Tabell här***
+| Method name                | Link / code                                  | Lines | Reflection |
+|---------------------------|----------------------------------------------|------:|------------|
+| `createPie(pieColour = "#")` | *bild* |   20 | Lång metod och bryter mot därför mot **Keep Functions Small**, men också **DRY** då en del kod förekommer i en annan metod. Bryter därför ut den delen till en egen metod. |
 
 Kapitel 3 har fått mig att reflektera mycket kring hur jag strukturerar och skriver mina metoder. Flera regler som “Functions should do one thing”, “Functions should be small” och “One level of abstraction per function” har varit särskilt relevanta då mina metoder många gånger gör för mycket.
 
