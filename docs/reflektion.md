@@ -24,7 +24,7 @@ Sammanfattningsvis förstår jag hur till och med små justeringar i namngivning
 En återstående utmaning för mig är dock att hålla namn så enkla och precisa som möjligt. När jag har refaktorerat mina namn har jag inte lyckats göra dessa kortare, utan snarare längre för att var mer självförklarande. Jag tycker dock inte att det gör något i min kod då det har bidragit till att lättare läsa och förstå helheten av min modul.
 
 ## Reflektion kapitel 3 - Funktioner
-| Method name                | Link / code                                  | Lines | Reflection |
+| Metodnamn               | Länk / kod                               | Antal rader utan ws | Reflektion |
 |---------------------------|----------------------------------------------|------:|------------|
 | `createPie(pieColour = "#")` | *bild* |   20 | Lång metod och bryter mot därför mot **Keep Functions Small**, men också **DRY** då en del kod förekommer i en annan metod. Bryter därför ut den delen till en egen metod. |
 
