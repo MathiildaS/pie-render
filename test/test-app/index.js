@@ -1,23 +1,87 @@
-import { DrawPie } from "../../src/drawpie.js"
+import { PieCanvas } from "../../src/piecanvas.js"
 import { InputConverter } from "../../src/inputconverter.js"
 import { PieStyle } from "../../src/piestyle.js"
 import { PieBoundaries } from "../../src/pieboundaries.js"
 import { PieRender } from "../../src/pierender.js"
 
-/** //------------TEST DrawPie-------------
-// Draw the initial pie by collecting the canvas element and create an instance of DrawPie.
-const canvas = document.getElementById("myCanvas")
-const drawPie = new DrawPie(canvas)
+// Collect the canvas element and create an instance of PieCanvas.
+const canvas = document.getElementById("canvasElement")
+const pieCanvas = new PieCanvas(canvas)
 
-// Draw pie with default colour.
-drawPie.createPie()
+//------------TEST PieCanvas-------------
 
-// Draw slice with default colour.
-drawPie.createSlice({sliceStartAngle: 0, sliceEndAngle: Math.PI })
+function testDefaultValues() {
+  // Draw circle with default colour.
+  pieCanvas.createCircle()
 
-// Draw slice with red colour.
-drawPie.createSlice({sliceStartAngle: 0, sliceEndAngle: Math.PI, sliceColour: "#f30000" }) 
-*/
+  // Draw slice on top of circle with default colour.
+  pieCanvas.sliceStartAngle = 0
+  pieCanvas.sliceEndAngle = Math.PI / 2
+  pieCanvas.createSlice()
+
+  // Add text with default text, font colour and size.
+  pieCanvas.displayTextOnCanvas()
+}
+
+function testCustomValues() {
+  // Set colour of circle.
+  pieCanvas.colourOfCircle = "#ff0000"
+
+  // Draw circle with custom colour.
+  pieCanvas.createCircle()
+
+  // Set colour of slice.
+  pieCanvas.sliceColour = "#000000"
+
+  // Draw slice with custom colour.
+  pieCanvas.sliceStartAngle = 0
+  pieCanvas.sliceEndAngle = Math.PI / 2
+  pieCanvas.createSlice()
+}
+
+function testCustomText() {
+  // Set custom text, font colour and font size.
+  pieCanvas.fontColour = "#000000"
+  pieCanvas.fontSize = "52"
+  pieCanvas.remainingValueText = "50"
+
+  // Display text
+  pieCanvas.displayTextOnCanvas()
+}
+
+function testColourValidation() {
+  try {
+    // Set colour of circle with numbers.
+    pieCanvas.colourOfCircle = 1234
+
+    pieCanvas.createCircle()
+  } catch (error) {
+    console.error(error.message)
+  }
+
+  try {
+    // Set colour of slice with letters.
+    pieCanvas.sliceColour = "black"
+
+    pieCanvas.sliceStartAngle = 0
+    pieCanvas.sliceEndAngle = Math.PI / 2
+    pieCanvas.createSlice()
+  } catch (error) {
+    console.error(error.message)
+  }
+}
+
+function testNumberValidation() {
+  try {
+    pieCanvas.fontColour = "#000000"
+    pieCanvas.fontSize = -10
+    pieCanvas.remainingValueText = "10"
+
+    pieCanvas.displayTextOnCanvas()
+  } catch (error) {
+    console.error(error.message)
+  }
+}
 
 /** // ----------TEST ConvertInput-----------
 // Test with base value of 200.
@@ -129,7 +193,7 @@ reDrawPie()
 
 // ----------TEST PieMeter----------
 
-const pieMeter = new PieRender()
+/**const pieMeter = new PieRender()
 const canvas = document.getElementById('myCanvas')
 pieMeter.createPie(canvas, 500)
 pieMeter.createSlice(200)
@@ -146,4 +210,10 @@ console.log("Warning Boundary: " + warningBoundary)
 console.log("Danger Boundary: " + dangerBoundary)
 console.log("Warning Boundary Colour: " + warningBoundaryColour)
 console.log("Danger Boundary Colour: " + dangerBoundaryColour)
-console.log("Remaining percent: " + remainingPercent)
+console.log("Remaining percent: " + remainingPercent)*/
+
+//testDefaultValues()
+//testCustomValues()
+//testCustomText()
+//testColourValidation()
+testNumberValidation()
