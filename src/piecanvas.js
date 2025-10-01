@@ -1,5 +1,5 @@
 /**
- * This class draws a full circle on an HTML canvas element in a default or custom colour.
+ * @file A module for the class PieCanvas. Draws a full circle on an HTML canvas element in a default or custom colour.
  * One or several slices in a default or custom colour can be painted on top of the circle to create the illusion of a pie chart.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
@@ -17,14 +17,14 @@ export class PieCanvas {
   #sliceStartAngle = 0
   #sliceEndAngle = 0
   #sliceColour = "#ffffff"
-  #remainingValueText = 100
+  #remainingValue = 100
   #fontSize = 35
   #fontColour = "#8ab864"
 
   /**
    * Initializes a new instance of the PieCanvas class, the canvas element and the 2D rendering context of it
    *
-   * @param {HTMLCanvasElement} canvasElement - The canvas element to draw the circle and slices on.
+   * @param {HTMLCanvasElement} canvasElement - The canvas element to draw on.
    */
   constructor(canvasElement) {
     this.#canvas = canvasElement
@@ -45,7 +45,7 @@ export class PieCanvas {
    * Clears the canvas before drawing the circle on it. Draws the circle at the center of the canvas.
    * Fills the circle with default or custom colour.
    */
-  createCircle() {
+  drawCircle() {
     this.#clearCanvas()
     this.#centerOfCanvas()
 
@@ -73,7 +73,7 @@ export class PieCanvas {
   /**
    * Draws a slice on the canvas.
    */
-  createSlice() {
+  drawSlice() {
     this.#centerOfCanvas()
 
     this.#ctx.beginPath()
@@ -96,89 +96,161 @@ export class PieCanvas {
     this.#ctx.textAlign = "left"
     this.#ctx.textBaseline = "top"
     this.#ctx.fillStyle = this.#fontColour
-    this.#ctx.fillText(`${this.#remainingValueText}%`, 10, 10)
+    this.#ctx.fillText(`${this.#remainingValue}%`, 10, 10)
     this.#ctx.strokeStyle = "#000000"
     this.#ctx.lineWidth = 2
-    this.#ctx.strokeText(`${this.#remainingValueText}%`, 10, 10)
+    this.#ctx.strokeText(`${this.#remainingValue}%`, 10, 10)
   }
 
+  /**
+   * Returns the colour of the pie.
+   */
   get colourOfCircle() {
     return this.#colourOfCircle
   }
 
+  /**
+   * Sets the colour to fill the circle.
+   *
+   * @param {string} hexColour - The colour value.
+   */
   set colourOfCircle(hexColour) {
     this.colourValidation(hexColour)
     this.#colourOfCircle = hexColour
   }
 
+  /**
+   * Returns the start angle of created slice.
+   */
   get sliceStartAngle() {
     return this.#sliceStartAngle
   }
 
+  /**
+   * Sets the value of where to begin a slice.
+   *
+   * @param {number} startAngleValueInRadians - The value of the start angle of a slice.
+   */
   set sliceStartAngle(startAngleValueInRadians) {
     this.numberValidation(startAngleValueInRadians)
     this.#sliceStartAngle = startAngleValueInRadians
   }
 
+  /**
+   * Returns the end angle of created slice.
+   */
   get sliceEndAngle() {
     return this.#sliceEndAngle
   }
 
+  /**
+   * Sets the value of where to end a slice.
+   *
+   * @param {number} endAngleValueInRadians - The value of the end angle of a slice.
+   */
   set sliceEndAngle(endAngleValueInRadians) {
     this.numberValidation(endAngleValueInRadians)
     this.#sliceEndAngle = endAngleValueInRadians
   }
 
+  /**
+   * Returns the colour of a slice.
+   */
   get sliceColour() {
     return this.#sliceColour
   }
 
+  /**
+   * Sets the colour to fill a slice.
+   *
+   * @param {string} hexColour - The colour value.
+   */
   set sliceColour(hexColour) {
     this.colourValidation(hexColour)
     this.#sliceColour = hexColour
   }
 
-  get remainingValueText() {
-    return this.#remainingValueText
+  /**
+   * Returns the number that will be transformed to text on the canvas.
+   */
+  get remainingValue() {
+    return this.#remainingValue
   }
 
-  set remainingValueText(valueInPercent) {
+  /**
+   * Sets the number that will be transformed to text on the canvas.
+   *
+   * @param {number} valueInPercent - The number to transform to text.
+   */
+  set remainingValue(valueInPercent) {
     this.numberValidation(valueInPercent)
-    this.#remainingValueText = valueInPercent
+    this.#remainingValue = valueInPercent
   }
 
+  /**
+   * Returns the size of the text on the canvas.
+   */
   get fontSize() {
     return this.#fontSize
   }
 
-  set fontSize(fontSizeValue) {
-    this.numberValidation(fontSizeValue)
-    this.#fontSize = fontSizeValue
+  /**
+   * Sets the font size of the text on the canvas.
+   *
+   * @param {number} fontSizeInPx - The number of the size.
+   */
+  set fontSize(fontSizeInPx) {
+    this.numberValidation(fontSizeInPx)
+    this.#fontSize = fontSizeInPx
   }
 
+  /**
+   * Returns the colour of the text on the canvas.
+   */
   get fontColour() {
     return this.#fontColour
   }
 
-  set fontColour(hexValue) {
-    this.colourValidation(hexValue)
-    this.#fontColour = hexValue
+  /**
+   * Sets the font colour of the text on the canvas.
+   *
+   * @param {string} hexColour - The colour value.
+   */
+  set fontColour(hexColour) {
+    this.colourValidation(hexColour)
+    this.#fontColour = hexColour
   }
 
+  /**
+   * Validates that the input is of the type 'string' and that the colour is written
+   * as a hex colour, for example #000000.
+   *
+   * @param {string} colour - The colour to validate.
+   */
   colourValidation(colour) {
     const hex = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i
     if (typeof colour !== "string") {
       throw new Error("The value must be a string")
     } else if (!hex.test(colour.trim())) {
-      throw new Error("Use a valid hex colour of the type #RGB, #RGBA, #RRGGBB, #RRGGBBAA")
+      throw new Error(
+        "Use a valid hex colour of the type #RGB, #RGBA, #RRGGBB, #RRGGBBAA"
+      )
     }
   }
 
+  /**
+   * Validates that the input is of the type 'number', neither positive Infinity, negative Infinity or NaN.
+   * The number must be equal to or larger than zero.
+   *
+   * @param {number} number - The number to validate.
+   * @throws {Error} If the input is not of the type number, positive Infinity, negative Infinity, NaN or less than zero.
+   */
   numberValidation(number) {
     if (typeof number !== "number" || !Number.isFinite(number)) {
       throw new Error("The value must be a number")
-    } else if (number < 0) {
-      throw new Error("The value must be larger than zero")
+    }
+    if (number < 0) {
+      throw new Error("The value can not be less than zero")
     }
   }
 
