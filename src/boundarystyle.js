@@ -3,22 +3,20 @@
  * It connects the state of the pie to a colour.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
- * @version 0.0.1
+ * @version 1.0.0
  */
-
-import { PieBoundaries } from "./pieboundaries.js"
 
 export class BoundaryStyle {
   #pieBoundaries
-  #okColour = "#66d675"
+  #okColour = "#8ab864"
   #warningColour = "#ffff00"
   #dangerColour = "#ff0000"
 
   /**
    * Initializes a new BoundaryStyle with a PieBoundaries instance.
    */
-  constructor() {
-    this.#pieBoundaries = new PieBoundaries()
+  constructor(pieBoundaries) {
+    this.#pieBoundaries = pieBoundaries
   }
 
   /**
