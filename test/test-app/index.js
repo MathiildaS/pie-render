@@ -85,7 +85,7 @@ function testNumberValidation() {
 }
 
 //---------TEST BoundaryStyle-----------
-const boundaryStyle = new BoundaryStyle()
+const boundaryStyle = new BoundaryStyle(new PieBoundaries)
 
 function testDefaultBoundaryColours() {
   console.log("Default ok colour: " + boundaryStyle.okColour)
@@ -135,10 +135,14 @@ const inputConverter = new InputConverter(200)
 
 function testInitialInputConverter() {
   console.log("Base value should be 200: " + inputConverter.baseValue)
-  console.log("Remaining percent should be 100: " + inputConverter.remainingPercent)
+  console.log(
+    "Remaining percent should be 100: " + inputConverter.remainingPercent
+  )
   console.log("Start angle should be 0: " + inputConverter.startAngle)
   console.log("Slice arc angle should be 0: " + inputConverter.sliceArcAngle)
-  console.log("Start slice angle should be 0: " + inputConverter.sliceStartAngle)
+  console.log(
+    "Start slice angle should be 0: " + inputConverter.sliceStartAngle
+  )
   console.log("End slice angle should be 0: " + inputConverter.sliceEndAngle)
 }
 
@@ -149,19 +153,34 @@ function testAddInput() {
   // Remaining percent: 70/200 = 35%, 100 - 35 = 65
 
   console.log("Base value should be 200: " + inputConverter.baseValue)
-  console.log("Remaining base value should be 130: " + inputConverter.remainingBaseValue)
-  console.log("Remaining percent should be 65: " + inputConverter.remainingPercent)
-  console.log("Total of added values should be 70: " + inputConverter.totalAddedInputValues)
+  console.log(
+    "Remaining base value should be 130: " + inputConverter.remainingBaseValue
+  )
+  console.log(
+    "Remaining percent should be 65: " + inputConverter.remainingPercent
+  )
+  console.log(
+    "Total of added values should be 70: " +
+      inputConverter.totalAddedInputValues
+  )
 
   // Arc angle : (70/200) * 2π = 0.7π ≈ 2.1991148575 rad.
-  // Slice start angle = start angle = 0 
+  // Slice start angle = start angle = 0
   // Slice end angle = slice start angle + arc angle = 2.1991148575 rad.
   // Start angle updated to = end slice angle = 2.1991148575 rad.
 
-  console.log("Slice arc angle should be 2.1991148575: " + inputConverter.sliceArcAngle)
-  console.log("Slice start angle should be 0: " + inputConverter.sliceStartAngle)
-  console.log("Slice end angle should be 2.1991148575: " + inputConverter.sliceEndAngle)
-  console.log("Start angle should be 2.1991148575: " + inputConverter.startAngle)
+  console.log(
+    "Slice arc angle should be 2.1991148575: " + inputConverter.sliceArcAngle
+  )
+  console.log(
+    "Slice start angle should be 0: " + inputConverter.sliceStartAngle
+  )
+  console.log(
+    "Slice end angle should be 2.1991148575: " + inputConverter.sliceEndAngle
+  )
+  console.log(
+    "Start angle should be 2.1991148575: " + inputConverter.startAngle
+  )
 
   inputConverter.addInput(20)
 
@@ -169,19 +188,35 @@ function testAddInput() {
   // Remaining percent: 100 - ((90/200) * 100) = 100 - 45 = 55
 
   console.log("Base value should be 200: " + inputConverter.baseValue)
-  console.log("Remaining base value should be 110: " + inputConverter.remainingBaseValue)
-  console.log("Remaining percent should be 55: " + inputConverter.remainingPercent)
-  console.log("Total of added values should be 90: " + inputConverter.totalAddedInputValues)
+  console.log(
+    "Remaining base value should be 110: " + inputConverter.remainingBaseValue
+  )
+  console.log(
+    "Remaining percent should be 55: " + inputConverter.remainingPercent
+  )
+  console.log(
+    "Total of added values should be 90: " +
+      inputConverter.totalAddedInputValues
+  )
 
   // Arc angle (20 / 200) * 2π = 0.2π ≈ 0.6283185307 rad.
   // Slice start angle = previous end angle = 2.1991148575 rad.
   // Slice end angle = slice start angle + arc angle = 2.1991148575 + 0.6283185307 ≈ 2.8274333882
   // Start angle updated to = end slice angle = 2.8274333882 rad.
 
-  console.log("Slice arc angle should be 0.6283185307: " + inputConverter.sliceArcAngle)
-  console.log("Slice start angle should be 2.1991148575: " + inputConverter.sliceStartAngle)
-  console.log("Slice end angle should be 2.8274333882: " + inputConverter.sliceEndAngle)
-  console.log("Start angle should be 2.8274333882: " + inputConverter.startAngle)
+  console.log(
+    "Slice arc angle should be 0.6283185307: " + inputConverter.sliceArcAngle
+  )
+  console.log(
+    "Slice start angle should be 2.1991148575: " +
+      inputConverter.sliceStartAngle
+  )
+  console.log(
+    "Slice end angle should be 2.8274333882: " + inputConverter.sliceEndAngle
+  )
+  console.log(
+    "Start angle should be 2.8274333882: " + inputConverter.startAngle
+  )
 }
 
 function testBaseValueValidation() {
@@ -206,7 +241,7 @@ function testBaseValueValidation() {
     console.error("Test NaN value: ", error.message)
   }
   try {
-    new InputConverter('200')
+    new InputConverter("200")
   } catch (error) {
     console.error("Test type string: ", error.message)
   }
@@ -234,7 +269,7 @@ function testAddInputValidation() {
     console.error("Test NaN value: ", error.message)
   }
   try {
-    inputConverter.addInput('50')
+    inputConverter.addInput("50")
   } catch (error) {
     console.error("Test type string: ", error.message)
   }
@@ -243,40 +278,61 @@ function testAddInputValidation() {
   } catch (error) {
     console.error("Test value greater than base value: ", error.message)
   }
-    inputConverter.addInput(200)
-    console.log("Test value equal to base value should not return error")
+  inputConverter.addInput(200)
+  console.log("Test value equal to base value should not return error")
 }
-
 
 // ----------TEST PieBoundaries-----------
 const pieBoundaries = new PieBoundaries()
 
 function testDefaultBoundaryValues() {
-console.log("Default warning boundary should be 50: " + pieBoundaries.warningBoundaryInPercent)
-console.log("Default danger boundary should be 20: " + pieBoundaries.dangerBoundaryInPercent)
+  console.log(
+    "Default warning boundary should be 50: " +
+      pieBoundaries.warningBoundaryInPercent
+  )
+  console.log(
+    "Default danger boundary should be 20: " +
+      pieBoundaries.dangerBoundaryInPercent
+  )
 }
 
 function testDefaultStateOfPie() {
-  console.log("100% left should return ok: " + pieBoundaries.getStateOfPie(100))
-  console.log("50% left should return warning: " + pieBoundaries.getStateOfPie(50))
-  console.log("20% left should return danger: " + pieBoundaries.getStateOfPie(20))
+  console.log(
+    "100% left should return ok: " + pieBoundaries.getStateOfPie(100)
+  )
+  console.log(
+    "50% left should return warning: " + pieBoundaries.getStateOfPie(50)
+  )
+  console.log(
+    "20% left should return danger: " + pieBoundaries.getStateOfPie(20)
+  )
 }
 
 function testCustomBoundaryValues() {
-pieBoundaries.warningBoundaryInPercent = 30
-pieBoundaries.dangerBoundaryInPercent = 10
+  pieBoundaries.warningBoundaryInPercent = 30
+  pieBoundaries.dangerBoundaryInPercent = 10
 
-console.log("Custom warning boundary should be 30: " + pieBoundaries.warningBoundaryInPercent)
-console.log("Custom danger boundary should be 10: " + pieBoundaries.dangerBoundaryInPercent)
+  console.log(
+    "Custom warning boundary should be 30: " +
+      pieBoundaries.warningBoundaryInPercent
+  )
+  console.log(
+    "Custom danger boundary should be 10: " +
+      pieBoundaries.dangerBoundaryInPercent
+  )
 }
 
 function testCustomStateOfPie() {
-pieBoundaries.warningBoundaryInPercent = 30
-pieBoundaries.dangerBoundaryInPercent = 10
+  pieBoundaries.warningBoundaryInPercent = 30
+  pieBoundaries.dangerBoundaryInPercent = 10
 
   console.log("80% left should return ok: " + pieBoundaries.getStateOfPie(80))
-  console.log("20% left should return warning: " + pieBoundaries.getStateOfPie(20))
-  console.log("5% left should return danger: " + pieBoundaries.getStateOfPie(5))
+  console.log(
+    "20% left should return warning: " + pieBoundaries.getStateOfPie(20)
+  )
+  console.log(
+    "5% left should return danger: " + pieBoundaries.getStateOfPie(5)
+  )
 }
 
 function testBoundaryValueValidation() {
@@ -285,12 +341,12 @@ function testBoundaryValueValidation() {
   } catch (error) {
     console.error("Test warning boundary less than zero: ", error.message)
   }
-    try {
+  try {
     pieBoundaries.dangerBoundaryInPercent = -2
   } catch (error) {
     console.error("Test danger boundary less than zero: ", error.message)
   }
-    try {
+  try {
     pieBoundaries.warningBoundaryInPercent = 0
   } catch (error) {
     console.error("Test warning boundary equal to zero: ", error.message)
@@ -324,15 +380,18 @@ function testBoundaryValueValidation() {
     pieBoundaries.warningBoundaryInPercent = 10
     pieBoundaries.dangerBoundaryInPercent = 20
   } catch (error) {
-    console.error("Test danger boundary larger than warning boundary ", error.message)
+    console.error(
+      "Test danger boundary larger than warning boundary ",
+      error.message
+    )
   }
   try {
-    pieBoundaries.warningBoundaryInPercent = '10'
+    pieBoundaries.warningBoundaryInPercent = "10"
   } catch (error) {
     console.error("Test warning boundary is string: ", error.message)
   }
   try {
-    pieBoundaries.dangerBoundaryInPercent = '100'
+    pieBoundaries.dangerBoundaryInPercent = "100"
   } catch (error) {
     console.error("Test danger boundary is string: ", error.message)
   }
@@ -350,7 +409,7 @@ function testStateOfPieValidation() {
     console.error("Test remaining percent is NaN: ", error.message)
   }
   try {
-    pieBoundaries.getStateOfPie('50')
+    pieBoundaries.getStateOfPie("50")
   } catch (error) {
     console.error("Test remaining percent is string: ", error.message)
   }
@@ -366,70 +425,115 @@ function testStateOfPieValidation() {
     console.error("Test remaining percent is equal to 0: ", error.message)
   }
   try {
-    console.log("Test 20% remaining" + pieBoundaries.getStateOfPie(20))
+    console.log("Test 20% remaining: " + pieBoundaries.getStateOfPie(20))
   } catch (error) {
     console.error("Test 20% remaining: ", error.message)
   }
 }
 
-/** // ----------TEST ALL TOGETHER-----------
-// Clear canvas before drawing.
-drawPie.clearCanvas()
+// ----------TEST ALL TOGETHER-----------
+// PieCanvas, BoundaryStyle, InputConverter, PieBoundaries
 
-const convertInput2 = new ConvertInput(500)
-const pieBoundaries2 = new PieBoundaries()
-const stylePie2 = new StylePie()
+function testClassesTogether() {
+  pieCanvas.drawCircle()
+  const converter = new InputConverter(500)
 
-stylePie2.pieColour = "#c3f572"
-stylePie2.sliceColour = "#ffffff"
+  pieCanvas.colourOfCircle = "#ce6363ff"
+  pieCanvas.sliceColour = "#e9e9e9"
 
-pieBoundaries2.warning = 40
-pieBoundaries2.danger = 10
+  pieBoundaries.warningBoundaryInPercent = 40
+  pieBoundaries.dangerBoundaryInPercent = 15
 
-stylePie2.warningColour = "#fcfa92"
-stylePie2.dangerColour = "#f08686"
+  converter.addInput(100)
+  pieCanvas.sliceStartAngle = converter.sliceStartAngle
+  pieCanvas.sliceEndAngle = converter.sliceEndAngle
+  pieCanvas.drawSlice()
 
-function reDrawPie() {
-    const startAngle = convertInput2.startAngle
-    const remainingPercent = convertInput2.remainingPercent
-    const remainingPieColour = stylePie2.getPieStyle(remainingPercent, pieBoundaries2)
-    
-    drawPie.createPie(stylePie2.sliceColour)
+  const remainingPercent = converter.remainingPercent
+  console.log("Remaining percent: " + converter.remainingPercent)
+  const state = pieBoundaries.getStateOfPie(remainingPercent)
+  console.log("State 80%: " + state)
 
-    if (startAngle < 2 * Math.PI) {
-        drawPie.createSlice({ sliceStartAngle: startAngle, sliceEndAngle: 2 * Math.PI, sliceColour: remainingPieColour })
-    }
+  /* converter.addInput(200)
+pieCanvas.sliceStartAngle = converter.sliceStartAngle
+pieCanvas.sliceEndAngle   = converter.sliceEndAngle
+pieCanvas.drawSlice() 
+
+const remainingPercent2 = converter.remainingPercent
+console.log("Remaining percent: " + converter.remainingPercent)
+const state2 = pieBoundaries.getStateOfPie(remainingPercent2)
+console.log("State 40%: " + state2)*/
+
+  /* converter.addInput(200)
+pieCanvas.sliceStartAngle = converter.sliceStartAngle
+pieCanvas.sliceEndAngle   = converter.sliceEndAngle
+pieCanvas.drawSlice()
+
+const remainingPercent3 = converter.remainingPercent
+console.log("Remaining percent: " + converter.remainingPercent)
+const state3 = pieBoundaries.getStateOfPie(remainingPercent3)
+console.log("State 0%: " + state3)*/
 }
 
-convertInput2.addInput(200)
-reDrawPie()
-convertInput2.addInput(200)
-reDrawPie()
-convertInput2.addInput(80)
-reDrawPie()
+// ----------TEST PieRender----------
+const canvas2 = document.getElementById("canvasElement")
+const pieRender = new PieRender(canvas2, 200)
 
-*/
+function testDefaultPie() {
+  pieRender.createSlice(50)
+  console.log("Current state after input value 50: ", pieRender.getCurrentStateOfPie())
 
-// ----------TEST PieMeter----------
+  pieRender.createSlice(80)
+  console.log("Current state after input value 80: ", pieRender.getCurrentStateOfPie())
+}
 
-/**const pieMeter = new PieRender()
-const canvas = document.getElementById('myCanvas')
-pieMeter.createPie(canvas, 500)
-pieMeter.createSlice(200)
-pieMeter.addPieBoundaries(50, 20)
-pieMeter.addPieColour("#23d32cff")
-pieMeter.addSliceColour("#ffffff")
-pieMeter.addPieBoundariesColours("#fce93cff","#b80c0cff")
-pieMeter.createSlice(250)
+function testCustomBoundariesColours() {
+  pieRender.setStateColours("#0099ff", "#5900ff")
+  pieRender.createSlice(100)
+  console.log(
+    "Current state after input value 100: ", pieRender.getCurrentStateOfPie()
+  )
+  pieRender.createSlice(50)
+  console.log(
+    "Current state after input value 50: " , pieRender.getCurrentStateOfPie()
+  )
+  pieRender.createSlice(20)
+  console.log(
+    "Current state after input value 20: ", pieRender.getCurrentStateOfPie()
+  )
+}
 
-const { pieColour, sliceColour, warningBoundary, dangerBoundary, warningBoundaryColour, dangerBoundaryColour, remainingPercent } = pieMeter.getPieInfo()
-console.log("Pie colour: " + pieColour)
-console.log("Slice colour: " + sliceColour)
-console.log("Warning Boundary: " + warningBoundary)
-console.log("Danger Boundary: " + dangerBoundary)
-console.log("Warning Boundary Colour: " + warningBoundaryColour)
-console.log("Danger Boundary Colour: " + dangerBoundaryColour)
-console.log("Remaining percent: " + remainingPercent)*/
+function testDrawStoredSlices() {
+  pieRender.createSlice(100)
+  pieRender.setSliceColour("#000000")
+  pieRender.createSlice(50)
+  pieRender.setSliceColour("#ffffff")
+
+  console.log(pieRender.getCurrentStateOfPie())
+}
+
+function testSetBoundariesValues() {
+  pieRender.setPieBoundaries(60, 30)
+  console.log(pieRender.getCurrentStateOfPie())
+}
+
+function testSetOnlyWarningBoundary() {
+  pieRender.setPieBoundaries(60)
+  console.log(pieRender.getCurrentStateOfPie())
+}
+
+function testSetOnlyDangerBoundary() {
+  pieRender.setPieBoundaries(null, 20)
+  console.log(pieRender.getCurrentStateOfPie())
+}
+
+function testTextSizeAndColour() {
+  pieRender.createSlice(80)
+  pieRender.displayPercentText(true)
+
+  pieRender.setFontColour("#ff00ff")
+  pieRender.setFontSize(50)
+}
 
 //-----------TEST PieCanvas--------------
 
@@ -457,4 +561,16 @@ console.log("Remaining percent: " + remainingPercent)*/
 //testDefaultStateOfPie()
 //testCustomStateOfPie()
 //testBoundaryValueValidation()
-testStateOfPieValidation()
+//testStateOfPieValidation()
+
+//--------TEST ALL TOGETHER-----------
+//testClassesTogether()
+
+//--------TEST PieRender-----------
+//testDefaultPie()
+//testCustomBoundariesColours()
+//testDrawStoredSlices()
+//testSetBoundariesValues()
+//testSetOnlyWarningBoundary()
+//testSetOnlyDangerBoundary()
+//testTextSizeAndColour()
