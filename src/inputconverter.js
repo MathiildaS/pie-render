@@ -182,19 +182,19 @@ export class InputConverter {
 
   /**
    * Validates that the input is of the type 'number', neither positive Infinity, negative Infinity or NaN.
-   * The number must be equal to or larger than zero.
+   * The number must be larger than zero.
    *
    * @param {number} number - The number to validate.
-   * @throws {Error} If the input is not of the type number, positive Infinity, negative Infinity, NaN or less than zero.
+   * @throws {Error} If the input is not of the type number, positive Infinity, negative Infinity, NaN, zero or less than zero.
    */
   #numberValidation(number) {
     if (typeof number !== "number" || !Number.isFinite(number)) {
       throw new Error(
-        "The value must be a number, not positive Infinity, not negative Infinity or NaN"
+        "The value must be a number, not positive Infinity, not negative Infinity or NaN."
       )
     }
-    if (number < 0) {
-      throw new Error("The value can not be less than zero")
+    if (number <= 0) {
+      throw new Error("The value must be larger than zero.")
     }
   }
 }
