@@ -119,7 +119,7 @@ export class PieCanvas {
    * @param {string} hexColour - The colour value.
    */
   set colourOfCircle(hexColour) {
-    this.colourValidation(hexColour)
+    this.#colourValidation(hexColour)
     this.#colourOfCircle = hexColour
   }
 
@@ -136,7 +136,7 @@ export class PieCanvas {
    * @param {number} startAngleValueInRadians - The value of the start angle of a slice.
    */
   set sliceStartAngle(startAngleValueInRadians) {
-    this.numberValidation(startAngleValueInRadians)
+    this.#numberValidation(startAngleValueInRadians)
     this.#sliceStartAngle = startAngleValueInRadians
   }
 
@@ -153,7 +153,7 @@ export class PieCanvas {
    * @param {number} endAngleValueInRadians - The value of the end angle of a slice.
    */
   set sliceEndAngle(endAngleValueInRadians) {
-    this.numberValidation(endAngleValueInRadians)
+    this.#numberValidation(endAngleValueInRadians)
     this.#sliceEndAngle = endAngleValueInRadians
   }
 
@@ -170,7 +170,7 @@ export class PieCanvas {
    * @param {string} hexColour - The colour value.
    */
   set sliceColour(hexColour) {
-    this.colourValidation(hexColour)
+    this.#colourValidation(hexColour)
     this.#sliceColour = hexColour
   }
 
@@ -187,7 +187,7 @@ export class PieCanvas {
    * @param {number} valueInPercent - The number to transform to text.
    */
   set remainingValue(valueInPercent) {
-    this.numberValidation(valueInPercent)
+    this.#numberValidation(valueInPercent)
     this.#remainingValue = valueInPercent
   }
 
@@ -204,7 +204,7 @@ export class PieCanvas {
    * @param {number} fontSizeInPx - The number of the size.
    */
   set fontSize(fontSizeInPx) {
-    this.numberValidation(fontSizeInPx)
+    this.#numberValidation(fontSizeInPx)
     this.#fontSize = fontSizeInPx
   }
 
@@ -221,7 +221,7 @@ export class PieCanvas {
    * @param {string} hexColour - The colour value.
    */
   set fontColour(hexColour) {
-    this.colourValidation(hexColour)
+    this.#colourValidation(hexColour)
     this.#fontColour = hexColour
   }
 
@@ -231,14 +231,13 @@ export class PieCanvas {
    *
    * @param {string} colour - The colour to validate.
    */
-  colourValidation(colour) {
+  #colourValidation(colour) {
     const hex = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i
     if (typeof colour !== "string") {
       throw new Error("The value must be a string")
-    } else if (!hex.test(colour.trim())) {
-      throw new Error(
-        "Use a valid hex colour of the type #RGB, #RGBA, #RRGGBB, #RRGGBBAA"
-      )
+    }
+    if (!hex.test(colour.trim())) {
+      throw new Error("Use a valid hex colour of the type #RGB, #RGBA, #RRGGBB, #RRGGBBAA")
     }
   }
 
@@ -249,7 +248,7 @@ export class PieCanvas {
    * @param {number} number - The number to validate.
    * @throws {Error} If the input is not of the type number, positive Infinity, negative Infinity, NaN or less than zero.
    */
-  numberValidation(number) {
+  #numberValidation(number) {
     if (typeof number !== "number" || !Number.isFinite(number)) {
       throw new Error("The value must be a number")
     }
