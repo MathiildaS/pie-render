@@ -51,16 +51,13 @@ function testCustomText() {
 
 function testColourValidation() {
   try {
-    // Set colour of circle with numbers.
     pieCanvas.colourOfCircle = 1234
-
     pieCanvas.drawCircle()
   } catch (error) {
     console.error("Test with number: ", error.message)
   }
 
   try {
-    // Set colour of slice with letters.
     pieCanvas.sliceColour = "black"
 
     pieCanvas.sliceStartAngle = 0
@@ -88,23 +85,22 @@ function testNumberValidation() {
 }
 
 //---------TEST BoundaryStyle-----------
-
-const boundaryStyle = new BoundaryStyle
+const boundaryStyle = new BoundaryStyle()
 
 function testDefaultBoundaryColours() {
-console.log("Default ok colour: " + boundaryStyle.okColour)
-console.log("Default warning colour: " + boundaryStyle.warningColour)
-console.log("Default danger colour: " + boundaryStyle.dangerColour)
+  console.log("Default ok colour: " + boundaryStyle.okColour)
+  console.log("Default warning colour: " + boundaryStyle.warningColour)
+  console.log("Default danger colour: " + boundaryStyle.dangerColour)
 }
 
 function testCustomBoundaryColours() {
-boundaryStyle.okColour = "#3462b8ff"
-boundaryStyle.warningColour = "#a696d3"
-boundaryStyle.dangerColour = "#ffb23f"
+  boundaryStyle.okColour = "#3462b8ff"
+  boundaryStyle.warningColour = "#a696d3"
+  boundaryStyle.dangerColour = "#ffb23f"
 
-console.log("New ok colour: " + boundaryStyle.warningColour)
-console.log("New warning colour: " + boundaryStyle.warningColour)
-console.log("New danger colour: " + boundaryStyle.dangerColour)
+  console.log("New ok colour: " + boundaryStyle.warningColour)
+  console.log("New warning colour: " + boundaryStyle.warningColour)
+  console.log("New danger colour: " + boundaryStyle.dangerColour)
 }
 
 function testBoundaryColourValidation() {
@@ -126,38 +122,130 @@ function testBoundaryColourValidation() {
 }
 
 function testRemainingPercentColour() {
-    let pieColour = boundaryStyle.okColour
-    console.log("Current colour ", pieColour)
+  let pieColour = boundaryStyle.okColour
+  console.log("Current colour ", pieColour)
 
-    console.log('Colour at 70%: ', boundaryStyle.getRemainingPieColour(70))
-    console.log('Colour at 50%: ', boundaryStyle.getRemainingPieColour(50))
-    console.log('Colour at 10%: ', boundaryStyle.getRemainingPieColour(10))
-  }
-
-
-/** // ----------TEST ConvertInput-----------
-// Test with base value of 200.
-const convertInput = new ConvertInput(200)
-console.log("Base value: " + convertInput.baseValue)
-console.log("Remaining percent: " + convertInput.remainingPercent)
-console.log("Start angle: " + convertInput.startAngle)
-console.log("End angle: " + convertInput.sliceStartAngle)
-console.log("End angle: " + convertInput.sliceEndAngle)
-
-console.log(convertInput.addInput(50))
-console.log(convertInput.addInput(75))
-console.log(convertInput.addInput(25))
-
-console.log("Total added values: " + convertInput.totalAddedInputValues)
-console.log("Remaining percent: " + convertInput.remainingPercent)
-
-// Test with value exceeding base value.
-try {
-    console.log(convertInput.addInput(100))
-} catch (error) {
-    console.error(error.message)
+  console.log("Colour at 70%: ", boundaryStyle.getRemainingPieColour(70))
+  console.log("Colour at 50%: ", boundaryStyle.getRemainingPieColour(50))
+  console.log("Colour at 10%: ", boundaryStyle.getRemainingPieColour(10))
 }
-*/
+
+//---------TEST InputConverter-----------
+const inputConverter = new InputConverter(200)
+
+function testInitialInputConverter() {
+  console.log("Base value should be 200: " + inputConverter.baseValue)
+  console.log("Remaining percent should be 100: " + inputConverter.remainingPercent)
+  console.log("Start angle should be 0: " + inputConverter.startAngle)
+  console.log("Slice arc angle should be 0: " + inputConverter.sliceArcAngle)
+  console.log("Start slice angle should be 0: " + inputConverter.sliceStartAngle)
+  console.log("End slice angle should be 0: " + inputConverter.sliceEndAngle)
+}
+
+function testAddInput() {
+  inputConverter.addInput(70)
+
+  // Remaining base value: 200 - 70 = 130
+  // Remaining percent: 70/200 = 35%, 100 - 35 = 65
+
+  console.log("Base value should be 200: " + inputConverter.baseValue)
+  console.log("Remaining base value should be 130: " + inputConverter.remainingBaseValue)
+  console.log("Remaining percent should be 65: " + inputConverter.remainingPercent)
+  console.log("Total of added values should be 70: " + inputConverter.totalAddedInputValues)
+
+  // Arc angle : (70/200) * 2π = 0.7π ≈ 2.1991148575 rad.
+  // Slice start angle = start angle = 0 
+  // Slice end angle = slice start angle + arc angle = 2.1991148575 rad.
+  // Start angle updated to = end slice angle = 2.1991148575 rad.
+
+  console.log("Slice arc angle should be 2.1991148575: " + inputConverter.sliceArcAngle)
+  console.log("Slice start angle should be 0: " + inputConverter.sliceStartAngle)
+  console.log("Slice end angle should be 2.1991148575: " + inputConverter.sliceEndAngle)
+  console.log("Start angle should be 2.1991148575: " + inputConverter.startAngle)
+
+  inputConverter.addInput(20)
+
+  // Remaining base value: 130 - 20 = 110
+  // Remaining percent: 100 - ((90/200) * 100) = 100 - 45 = 55
+
+  console.log("Base value should be 200: " + inputConverter.baseValue)
+  console.log("Remaining base value should be 110: " + inputConverter.remainingBaseValue)
+  console.log("Remaining percent should be 55: " + inputConverter.remainingPercent)
+  console.log("Total of added values should be 90: " + inputConverter.totalAddedInputValues)
+
+  // Arc angle (20 / 200) * 2π = 0.2π ≈ 0.6283185307 rad.
+  // Slice start angle = previous end angle = 2.1991148575 rad.
+  // Slice end angle = slice start angle + arc angle = 2.1991148575 + 0.6283185307 ≈ 2.8274333882
+  // Start angle updated to = end slice angle = 2.8274333882 rad.
+
+  console.log("Slice arc angle should be 0.6283185307: " + inputConverter.sliceArcAngle)
+  console.log("Slice start angle should be 2.1991148575: " + inputConverter.sliceStartAngle)
+  console.log("Slice end angle should be 2.8274333882: " + inputConverter.sliceEndAngle)
+  console.log("Start angle should be 2.8274333882: " + inputConverter.startAngle)
+}
+
+function testBaseValueValidation() {
+  try {
+    new InputConverter(-200)
+  } catch (error) {
+    console.error("Test negative base value: ", error.message)
+  }
+  try {
+    new InputConverter(0)
+  } catch (error) {
+    console.error("Test 0 base value: ", error.message)
+  }
+  try {
+    new InputConverter()
+  } catch (error) {
+    console.error("Test no provided value: ", error.message)
+  }
+  try {
+    new InputConverter(NaN)
+  } catch (error) {
+    console.error("Test NaN value: ", error.message)
+  }
+  try {
+    new InputConverter('200')
+  } catch (error) {
+    console.error("Test type string: ", error.message)
+  }
+}
+
+function testAddInputValidation() {
+  try {
+    inputConverter.addInput(-10)
+  } catch (error) {
+    console.error("Test negative input value: ", error.message)
+  }
+  try {
+    inputConverter.addInput(0)
+  } catch (error) {
+    console.error("Test 0 input value: ", error.message)
+  }
+  try {
+    inputConverter.addInput()
+  } catch (error) {
+    console.error("Test no provided value: ", error.message)
+  }
+  try {
+    inputConverter.addInput(NaN)
+  } catch (error) {
+    console.error("Test NaN value: ", error.message)
+  }
+  try {
+    inputConverter.addInput('50')
+  } catch (error) {
+    console.error("Test type string: ", error.message)
+  }
+  try {
+    inputConverter.addInput(300)
+  } catch (error) {
+    console.error("Test value greater than base value: ", error.message)
+  }
+    inputConverter.addInput(200)
+    console.log("Test value equal to base value should not return error")
+}
 
 
 /** // ----------TEST PieBoundaries-----------
@@ -258,3 +346,9 @@ console.log("Remaining percent: " + remainingPercent)*/
 //testCustomBoundaryColours()
 //testBoundaryColourValidation()
 //testRemainingPercentColour()
+
+//----------TEST InputConverter-----------
+//testInitialInputConverter()
+//testAddInput()
+//testBaseValueValidation()
+testAddInputValidation()
