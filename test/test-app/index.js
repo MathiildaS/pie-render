@@ -248,31 +248,129 @@ function testAddInputValidation() {
 }
 
 
-/** // ----------TEST PieBoundaries-----------
+// ----------TEST PieBoundaries-----------
 const pieBoundaries = new PieBoundaries()
 
-console.log("Default warning boundary: " + pieBoundaries.warning)
-console.log("Default danger boundary: " + pieBoundaries.danger)
-
-console.log("Check boundary at 100% left: " + pieBoundaries.getBoundaries(100))
-console.log("Check boundary at 50% left: " + pieBoundaries.getBoundaries(50))
-console.log("Check boundary at 15% left: " + pieBoundaries.getBoundaries(15))
-
-// Set new boundaries.
-pieBoundaries.warning = 80
-pieBoundaries.danger = 50
-
-console.log("Check boundary at 70% left: " + pieBoundaries.getBoundaries(70))
-console.log("Check boundary at 40% left: " + pieBoundaries.getBoundaries(40))
-
-// Test invalid boundary value.
-try {
-    pieBoundaries.warning = -10
-} catch (error) {
-    console.error(error.message)
+function testDefaultBoundaryValues() {
+console.log("Default warning boundary should be 50: " + pieBoundaries.warningBoundaryInPercent)
+console.log("Default danger boundary should be 20: " + pieBoundaries.dangerBoundaryInPercent)
 }
 
-*/
+function testDefaultStateOfPie() {
+  console.log("100% left should return ok: " + pieBoundaries.getStateOfPie(100))
+  console.log("50% left should return warning: " + pieBoundaries.getStateOfPie(50))
+  console.log("20% left should return danger: " + pieBoundaries.getStateOfPie(20))
+}
+
+function testCustomBoundaryValues() {
+pieBoundaries.warningBoundaryInPercent = 30
+pieBoundaries.dangerBoundaryInPercent = 10
+
+console.log("Custom warning boundary should be 30: " + pieBoundaries.warningBoundaryInPercent)
+console.log("Custom danger boundary should be 10: " + pieBoundaries.dangerBoundaryInPercent)
+}
+
+function testCustomStateOfPie() {
+pieBoundaries.warningBoundaryInPercent = 30
+pieBoundaries.dangerBoundaryInPercent = 10
+
+  console.log("80% left should return ok: " + pieBoundaries.getStateOfPie(80))
+  console.log("20% left should return warning: " + pieBoundaries.getStateOfPie(20))
+  console.log("5% left should return danger: " + pieBoundaries.getStateOfPie(5))
+}
+
+function testBoundaryValueValidation() {
+  try {
+    pieBoundaries.warningBoundaryInPercent = -10
+  } catch (error) {
+    console.error("Test warning boundary less than zero: ", error.message)
+  }
+    try {
+    pieBoundaries.dangerBoundaryInPercent = -2
+  } catch (error) {
+    console.error("Test danger boundary less than zero: ", error.message)
+  }
+    try {
+    pieBoundaries.warningBoundaryInPercent = 0
+  } catch (error) {
+    console.error("Test warning boundary equal to zero: ", error.message)
+  }
+  try {
+    pieBoundaries.dangerBoundaryInPercent = 0
+  } catch (error) {
+    console.error("Test danger boundary equal to zero: ", error.message)
+  }
+  try {
+    pieBoundaries.warningBoundaryInPercent = NaN
+  } catch (error) {
+    console.error("Test warning boundary is NaN: ", error.message)
+  }
+  try {
+    pieBoundaries.dangerBoundaryInPercent = NaN
+  } catch (error) {
+    console.error("Test danger boundary is NaN: ", error.message)
+  }
+  try {
+    pieBoundaries.warningBoundaryInPercent = 200
+  } catch (error) {
+    console.error("Test warning boundary is larger than 100: ", error.message)
+  }
+  try {
+    pieBoundaries.dangerBoundaryInPercent = 200
+  } catch (error) {
+    console.error("Test danger boundary is larger than 100: ", error.message)
+  }
+  try {
+    pieBoundaries.warningBoundaryInPercent = 10
+    pieBoundaries.dangerBoundaryInPercent = 20
+  } catch (error) {
+    console.error("Test danger boundary larger than warning boundary ", error.message)
+  }
+  try {
+    pieBoundaries.warningBoundaryInPercent = '10'
+  } catch (error) {
+    console.error("Test warning boundary is string: ", error.message)
+  }
+  try {
+    pieBoundaries.dangerBoundaryInPercent = '100'
+  } catch (error) {
+    console.error("Test danger boundary is string: ", error.message)
+  }
+}
+
+function testStateOfPieValidation() {
+  try {
+    pieBoundaries.getStateOfPie(-5)
+  } catch (error) {
+    console.error("Test remaining percent is less than zero: ", error.message)
+  }
+  try {
+    pieBoundaries.getStateOfPie(NaN)
+  } catch (error) {
+    console.error("Test remaining percent is NaN: ", error.message)
+  }
+  try {
+    pieBoundaries.getStateOfPie('50')
+  } catch (error) {
+    console.error("Test remaining percent is string: ", error.message)
+  }
+  try {
+    pieBoundaries.getStateOfPie(150)
+  } catch (error) {
+    console.error("Test remaining percent is larger than 100: ", error.message)
+  }
+  try {
+    pieBoundaries.getStateOfPie(0)
+    console.log("Test remaining percent is equal to 0 should not throw error.")
+  } catch (error) {
+    console.error("Test remaining percent is equal to 0: ", error.message)
+  }
+  try {
+    console.log("Test 20% remaining" + pieBoundaries.getStateOfPie(20))
+  } catch (error) {
+    console.error("Test 20% remaining: ", error.message)
+  }
+}
 
 /** // ----------TEST ALL TOGETHER-----------
 // Clear canvas before drawing.
@@ -333,7 +431,7 @@ console.log("Warning Boundary Colour: " + warningBoundaryColour)
 console.log("Danger Boundary Colour: " + dangerBoundaryColour)
 console.log("Remaining percent: " + remainingPercent)*/
 
-//------------TEST PieCanvas-------------
+//-----------TEST PieCanvas--------------
 
 //testDefaultValues()
 //testCustomValues()
@@ -347,8 +445,16 @@ console.log("Remaining percent: " + remainingPercent)*/
 //testBoundaryColourValidation()
 //testRemainingPercentColour()
 
-//----------TEST InputConverter-----------
+//----------TEST InputConverter----------
 //testInitialInputConverter()
 //testAddInput()
 //testBaseValueValidation()
-testAddInputValidation()
+//testAddInputValidation()
+
+//----------TEST PieBoundaries-----------
+//testDefaultBoundaryValues()
+//testCustomBoundaryValues()
+//testDefaultStateOfPie()
+//testCustomStateOfPie()
+//testBoundaryValueValidation()
+testStateOfPieValidation()

@@ -12,14 +12,14 @@ export class PieBoundaries {
   /**
    * Returns the warning boundary value.
    */
-  get warningInPercent() {
+  get warningBoundaryInPercent() {
     return this.#warningBoundary
   }
 
   /**
    * Validates and sets the warning boundary value.
    */
-  set warningInPercent(number) {
+  set warningBoundaryInPercent(number) {
     this.#boundaryValidation(number)
     if (number <= this.#dangerBoundary) {
       throw new Error("The warning boundary can not be less than or equal to the danger boundary")
@@ -30,14 +30,14 @@ export class PieBoundaries {
   /**
    * Gets the danger boundary value.
    */
-  get dangerInPercent() {
+  get dangerBoundaryInPercent() {
     return this.#dangerBoundary
   }
 
   /**
    * Sets the danger boundary value.
    */
-  set dangerInPercent(number) {
+  set dangerBoundaryInPercent(number) {
     this.#boundaryValidation(number)
     if (number >= this.#warningBoundary) {
       throw new Error("The danger boundary can not be larger than or equal to the warning boundary")
