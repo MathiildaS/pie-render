@@ -1,18 +1,28 @@
 /**
- * This class handles the visual appearance of the pie for when reaching a boundary.
+ * @file A module for the class BoundaryStyle. Handles the visual appearance of the pie for when reaching a boundary.
  * It connects the state of the pie to a colour.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 0.0.1
  */
 
+import { PieBoundaries } from "./pieboundaries.js"
+
 export class BoundaryStyle {
+  #pieBoundaries
   #okColour = "#66d675"
   #warningColour = "#ffff00"
   #dangerColour = "#ff0000"
 
   /**
-   * Gets the colour of the pie for when the state is 'ok'.
+   * Initializes a new BoundaryStyle with a PieBoundaries instance.
+   */
+  constructor() {
+    this.#pieBoundaries = new PieBoundaries()
+  }
+
+  /**
+   * Returns the colour of the pie for when the state is 'ok'.
    */
   get okColour() {
     return this.#okColour
@@ -24,12 +34,12 @@ export class BoundaryStyle {
    * @param {string} hexColour - The colour value.
    */
   set okColour(hexColour) {
-    this.colourValidation(hexColour)
+    this.#colourValidation(hexColour)
     this.#okColour = hexColour
   }
 
   /**
-   * Gets the warning colour.
+   * Returns the colour of the pie for when the state is 'warning'.
    */
   get warningColour() {
     return this.#warningColour
@@ -37,15 +47,16 @@ export class BoundaryStyle {
 
   /**
    * Sets the warning colour for when the pie is in a warning state.
+   *
    * @param {string} hexColour - The colour value.
    */
   set warningColour(hexColour) {
-    this.colourValidation(hexColour)
+    this.#colourValidation(hexColour)
     this.#warningColour = hexColour
   }
 
   /**
-   * Gets the danger colour.
+   * Returns the colour of the pie for when the state is 'danger'.
    */
   get dangerColour() {
     return this.#dangerColour
@@ -53,22 +64,22 @@ export class BoundaryStyle {
 
   /**
    * Sets the danger colour for when the pie is in a danger state.
+   *
    * @param {string} hexColour - The colour value.
    */
   set dangerColour(hexColour) {
-    this.colourValidation(hexColour)
+    this.#colourValidation(hexColour)
     this.#dangerColour = hexColour
   }
 
   /**
-   * Gets the style of the pie based on the current value and boundaries.
+   * Gets the colour of the pie based on remaining percent of base value.
    *
    * @param {number} remainingPercentValue - The remaining percentage value of the pie.
-   * @param {PieBoundaries} pieBoundaries - The PieBoundaries instance containing values of pie boundaries.
-   * @returns {string} pieColour - The colour of the remaining pie.
+   * @returns {string} The colour to set the pie.
    */
-  getRemainingColour(remainingPercentValue, pieBoundaries) {
-    let pieState = pieBoundaries.getBoundaries(remainingPercentValue)
+  getRemainingPieColour(remainingPercentValue) {
+    let pieState = this.#pieBoundaries.getBoundaries(remainingPercentValue)
     let pieColour = this.#okColour
 
     if (pieState === "danger") {
@@ -80,12 +91,21 @@ export class BoundaryStyle {
     return pieColour
   }
 
-    colourValidation(colour) {
+  /**
+   * Validates that the input is of the type 'string' and that the colour is written
+   * as a hex colour, for example #000000.
+   *
+   * @param {string} colour - The colour to validate.
+   */
+  #colourValidation(colour) {
     const hex = /^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i
     if (typeof colour !== "string") {
       throw new Error("The value must be a string")
-    } else if (!hex.test(colour.trim())) {
-      throw new Error("Use a valid hex colour of the type #RGB, #RGBA, #RRGGBB, #RRGGBBAA")
+    }
+    if (!hex.test(colour.trim())) {
+      throw new Error(
+        "Use a valid hex colour of the type #RGB, #RGBA, #RRGGBB, #RRGGBBAA"
+      )
     }
   }
 }
