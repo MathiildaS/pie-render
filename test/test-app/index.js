@@ -1,23 +1,23 @@
 import { PieCanvas } from "../../src/piecanvas.js"
 import { InputConverter } from "../../src/inputconverter.js"
-import { BoundariesStyle } from "../../src/boundarystyle.js"
+import { BoundaryStyle } from "../../src/boundarystyle.js"
 import { PieBoundaries } from "../../src/pieboundaries.js"
 import { PieRender } from "../../src/pierender.js"
+
+//------------TEST PieCanvas-------------
 
 // Collect the canvas element and create an instance of PieCanvas.
 const canvas = document.getElementById("canvasElement")
 const pieCanvas = new PieCanvas(canvas)
 
-//------------TEST PieCanvas-------------
-
 function testDefaultValues() {
   // Draw circle with default colour.
-  pieCanvas.createCircle()
+  pieCanvas.drawCircle()
 
   // Draw slice on top of circle with default colour.
   pieCanvas.sliceStartAngle = 0
   pieCanvas.sliceEndAngle = Math.PI / 2
-  pieCanvas.createSlice()
+  pieCanvas.drawSlice()
 
   // Add text with default text, font colour and size.
   pieCanvas.displayTextOnCanvas()
@@ -28,7 +28,7 @@ function testCustomValues() {
   pieCanvas.colourOfCircle = "#ff0000"
 
   // Draw circle with custom colour.
-  pieCanvas.createCircle()
+  pieCanvas.drawCircle()
 
   // Set colour of slice.
   pieCanvas.sliceColour = "#000000"
@@ -36,14 +36,14 @@ function testCustomValues() {
   // Draw slice with custom colour.
   pieCanvas.sliceStartAngle = 0
   pieCanvas.sliceEndAngle = Math.PI / 2
-  pieCanvas.createSlice()
+  pieCanvas.drawSlice()
 }
 
 function testCustomText() {
   // Set custom text, font colour and font size.
   pieCanvas.fontColour = "#000000"
-  pieCanvas.fontSize = "52"
-  pieCanvas.remainingValueText = "50"
+  pieCanvas.fontSize = 52
+  pieCanvas.remainingValue = 50
 
   // Display text
   pieCanvas.displayTextOnCanvas()
@@ -54,9 +54,9 @@ function testColourValidation() {
     // Set colour of circle with numbers.
     pieCanvas.colourOfCircle = 1234
 
-    pieCanvas.createCircle()
+    pieCanvas.drawCircle()
   } catch (error) {
-    console.error(error.message)
+    console.error("Test with number: ", error.message)
   }
 
   try {
@@ -65,9 +65,9 @@ function testColourValidation() {
 
     pieCanvas.sliceStartAngle = 0
     pieCanvas.sliceEndAngle = Math.PI / 2
-    pieCanvas.createSlice()
+    pieCanvas.drawSlice()
   } catch (error) {
-    console.error(error.message)
+    console.error("Test with letters: ", error.message)
   }
 }
 
@@ -75,13 +75,65 @@ function testNumberValidation() {
   try {
     pieCanvas.fontColour = "#000000"
     pieCanvas.fontSize = -10
-    pieCanvas.remainingValueText = "10"
-
     pieCanvas.displayTextOnCanvas()
   } catch (error) {
-    console.error(error.message)
+    console.error("Test with value less than zero: ", error.message)
+  }
+  try {
+    pieCanvas.remainingValue = "10"
+    pieCanvas.displayTextOnCanvas()
+  } catch (error) {
+    console.error("Test with value as string: ", error.message)
   }
 }
+
+//---------TEST BoundaryStyle-----------
+
+const boundaryStyle = new BoundaryStyle
+
+function testDefaultBoundaryColours() {
+console.log("Default ok colour: " + boundaryStyle.okColour)
+console.log("Default warning colour: " + boundaryStyle.warningColour)
+console.log("Default danger colour: " + boundaryStyle.dangerColour)
+}
+
+function testCustomBoundaryColours() {
+boundaryStyle.okColour = "#3462b8ff"
+boundaryStyle.warningColour = "#a696d3"
+boundaryStyle.dangerColour = "#ffb23f"
+
+console.log("New ok colour: " + boundaryStyle.warningColour)
+console.log("New warning colour: " + boundaryStyle.warningColour)
+console.log("New danger colour: " + boundaryStyle.dangerColour)
+}
+
+function testBoundaryColourValidation() {
+  try {
+    boundaryStyle.okColour = "green"
+  } catch (error) {
+    console.error("Test colour written in letters: ", error.message)
+  }
+  try {
+    boundaryStyle.warningColour = 123
+  } catch (error) {
+    console.error("Test colour written in number: ", error.message)
+  }
+  try {
+    boundaryStyle.dangerColour = "#XXXXXX"
+  } catch (error) {
+    console.error("Test invalid hex-colour: ", error.message)
+  }
+}
+
+function testRemainingPercentColour() {
+    let pieColour = boundaryStyle.okColour
+    console.log("Current colour ", pieColour)
+
+    console.log('Colour at 70%: ', boundaryStyle.getRemainingPieColour(70))
+    console.log('Colour at 50%: ', boundaryStyle.getRemainingPieColour(50))
+    console.log('Colour at 10%: ', boundaryStyle.getRemainingPieColour(10))
+  }
+
 
 /** // ----------TEST ConvertInput-----------
 // Test with base value of 200.
@@ -107,25 +159,6 @@ try {
 }
 */
 
-/** // ------------TEST StylePie-------------
-const stylePie = new StylePie()
-
-console.log("Default pie colour: " + stylePie.pieColour)
-console.log("Default slice colour: " + stylePie.sliceColour)
-console.log("Default warning colour: " + stylePie.warningColour)
-console.log("Default danger colour: " + stylePie.dangerColour)
-
-stylePie.pieColour = "#000000"
-stylePie.sliceColour = "#ffffff"
-stylePie.warningColour = "#a696d3"
-stylePie.dangerColour = "#ffb23f"
-
-console.log("New pie colour: " + stylePie.pieColour)
-console.log("New slice colour: " + stylePie.sliceColour)
-console.log("New warning colour: " + stylePie.warningColour)
-console.log("New danger colour: " + stylePie.dangerColour)
-
-*/
 
 /** // ----------TEST PieBoundaries-----------
 const pieBoundaries = new PieBoundaries()
@@ -212,8 +245,16 @@ console.log("Warning Boundary Colour: " + warningBoundaryColour)
 console.log("Danger Boundary Colour: " + dangerBoundaryColour)
 console.log("Remaining percent: " + remainingPercent)*/
 
+//------------TEST PieCanvas-------------
+
 //testDefaultValues()
 //testCustomValues()
 //testCustomText()
 //testColourValidation()
 //testNumberValidation()
+
+//----------TEST BoundaryStyle-----------
+//testDefaultBoundaryColours()
+//testCustomBoundaryColours()
+//testBoundaryColourValidation()
+//testRemainingPercentColour()
