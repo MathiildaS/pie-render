@@ -1,5 +1,5 @@
 /**
- * This module provides a class to convert input values into percentages and angles for pie chart slices.
+ * @file A module for the class InputConverter. Convert input values into percentages and angles for pie slices.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 0.0.1
@@ -20,11 +20,8 @@ export class InputConverter {
    * @param {number} baseValue - The value that represents 100%.
    */
   constructor(baseValue) {
+    this.#numberValidation
     this.#baseValue = baseValue
-
-    if (this.#baseValue <= 0 || isNaN(this.#baseValue)) {
-      throw new Error("The given base value must be a number larger than zero")
-    }
   }
 
   /**
@@ -136,5 +133,21 @@ export class InputConverter {
 
   get sliceStartAngle() {
     return this.#sliceStartAngle
+  }
+
+    /**
+   * Validates that the input is of the type 'number', neither positive Infinity, negative Infinity or NaN.
+   * The number must be equal to or larger than zero.
+   *
+   * @param {number} number - The number to validate.
+   * @throws {Error} If the input is not of the type number, positive Infinity, negative Infinity, NaN or less than zero.
+   */
+  #numberValidation(number) {
+    if (typeof number !== "number" || !Number.isFinite(number)) {
+      throw new Error("The value must be a number, not positive Infinity, not negative Infinity or NaN")
+    }
+    if (number < 0) {
+      throw new Error("The value can not be less than zero")
+    }
   }
 }
