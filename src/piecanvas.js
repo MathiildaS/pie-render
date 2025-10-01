@@ -1,5 +1,5 @@
 /**
- * @file A module for the class PieCanvas. Draws a full circle on an HTML canvas element in a default or custom colour.
+ * @file A module for the PieCanvas class. Draws a full circle on an HTML canvas element in a default or custom colour.
  * One or several slices in a default or custom colour can be painted on top of the circle to create the illusion of a pie chart.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>

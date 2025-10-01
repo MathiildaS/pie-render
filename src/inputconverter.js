@@ -1,5 +1,5 @@
 /**
- * @file A module for the class InputConverter. Convert input values into percentages and angles that can be used to create slices of the pie.
+ * @file A module for the InputConverter class. Convert input values into percentages and angles that can be used to create slices of the pie.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 0.0.1

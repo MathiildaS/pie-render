@@ -1,5 +1,5 @@
 /**
- * @file A module for the class BoundaryStyle. Handles the visual appearance of the pie for when reaching a boundary.
+ * @file A module for the BoundaryStyle class. Handles the visual appearance of the pie for when reaching a boundary.
  * It connects the state of the pie to a colour.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
@@ -79,7 +79,7 @@ export class BoundaryStyle {
    * @returns {string} The colour to set the pie.
    */
   getRemainingPieColour(remainingPercentValue) {
-    let pieState = this.#pieBoundaries.getBoundaries(remainingPercentValue)
+    let pieState = this.#pieBoundaries.getStateOfPie(remainingPercentValue)
     let pieColour = this.#okColour
 
     if (pieState === "danger") {
