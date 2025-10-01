@@ -2,7 +2,7 @@
  * @file A module for the PieBoundaries class. This class manages the warning and danger boundaries for the pie.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
- * @version 0.0.1
+ * @version 1.0.0
  */
 
 export class PieBoundaries {
