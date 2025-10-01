@@ -1,5 +1,5 @@
 /**
- * @file A module for the class InputConverter. Convert input values into percentages and angles for pie slices.
+ * @file A module for the class InputConverter. Convert input values into percentages and angles that can be used to create slices of the pie.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 0.0.1
@@ -9,133 +9,178 @@ export class InputConverter {
   #baseValue
   #inputValue = 0
   #startAngle = 0
+  #sliceArcAngle = 0
   #sliceStartAngle = 0
   #sliceEndAngle = 0
   #totalAddedInputValues = 0
+  #inputInPercent = 0
+  #remainingBaseValue
   #remainingPercent = 100
 
   /**
-   * This constructor initializes the class with a base value and validates it.
+   * Initializes the InputConverter with a validated base value.
    *
-   * @param {number} baseValue - The value that represents 100%.
+   * @param {number} baseValue - The provided base value.
    */
   constructor(baseValue) {
-    this.#numberValidation
+    this.#numberValidation(baseValue)
     this.#baseValue = baseValue
   }
 
   /**
    * Returns the base value.
-   * 
-   * @returns {number} - The base value.
    */
   get baseValue() {
     return this.#baseValue
   }
 
   /**
-   * This method converts an input value to a percentage based on the base value.
-   *
-   * @param {number} inputValue - The value to be converted to percentage.
-   * @returns {number} percentValue - The value converted to percentage.
+   * Converts an input value to a percentage value based on the base value and collects it.
    */
-  #convertToPercent(inputValue) {
-    this.#inputValue = inputValue
+  #convertToPercent() {
     const percentValue = (this.#inputValue / this.#baseValue) * 100
-    return percentValue
+    this.#inputInPercent = percentValue
   }
 
   /**
-   * This method converts a percentage value to an angle in radians.
-   *
-   * @param {number} percentValue - The value in percentage to be converted to angle.
-   * @returns {number} angleValue - The value converted to angle in radians.
+   * Converts a percentage value to an arc angle in radians and collects it.
+   * 100% = 2π. If #inputInPercent = 50, #sliceArcAngle = π
    */
-  #convertToAngle(percentValue) {
-    const angleValue = (percentValue / 100) * 2 * Math.PI
-    return angleValue
+  #convertToAngle() {
+    const angleValue = (this.#inputInPercent / 100) * 2 * Math.PI
+    this.#sliceArcAngle = angleValue
   }
 
   /**
-   * This method calculates the start and end angles for a slice based on the given percentage value.
+   * Calculates the start and end angles (arc) for an input value that will represent a slice and collects them.
+   * Updates the start angle and collects it.
    * Handles cases where the end angle exceeds the maximum angle.
-   *
-   * @param {number} percentValue - The value in percentage to be converted to slice angles.
-   * @returns { sliceStartAngle: number, sliceEndAngle: number } - The start and end angles of the slice.
    */
-  #calculateSliceAngles(percentValue) {
-    const sliceAngle = this.#convertToAngle(percentValue)
+  #calculateSliceAngles() {
+    this.#convertToPercent()
+    this.#convertToAngle()
+
     this.#sliceStartAngle = this.#startAngle
-    this.#sliceEndAngle = this.#sliceStartAngle + sliceAngle
+    this.#sliceEndAngle = this.#sliceStartAngle + this.#sliceArcAngle
 
     if (this.#sliceEndAngle > 2 * Math.PI) {
       this.#sliceEndAngle = 2 * Math.PI
     }
 
     this.#startAngle = this.#sliceEndAngle
-    return { sliceStartAngle: this.#sliceStartAngle, sliceEndAngle: this.#sliceEndAngle }
   }
 
   /**
-   * Calculates the remaining percentage value based on the input value and base value.
-   * 
-   * @returns {number} - The remaining percentage value of the given base value.
-   */
-  #calculateRemainingPercent() {
-    this.#remainingPercent = Math.max(0, 100 - (this.#totalAddedInputValues / this.#baseValue) * 100)
-    return this.#remainingPercent
-  }
-
-  /**
-   * This method adds a new input value and calculates the corresponding slice angles.
-   * Validates the input value to ensure it is a number larger than zero.
+   * Validates the input value. Adds it to the total amount of input values,
+   * converts it to percentage and arc angles. Calculates the remaining percentage and value
+   * of the base value.
    *
    * @param {number} inputValue - The value to be added.
-   * @returns { sliceStartAngle: number, sliceEndAngle: number, percentValue: number } - The start and end angles of the slice, along with the percentage value.
    */
   addInput(inputValue) {
-    if (isNaN(inputValue) || inputValue <= 0) {
-      throw new Error("The given input value must be a number larger than zero")
-    }
-    
-    this.#totalAddedInputValues = this.#totalAddedInputValues + inputValue
+    this.#numberValidation(inputValue)
+    this.#calculateAddedInputValues(inputValue)
 
-    if (this.#totalAddedInputValues > this.#baseValue) {
+    this.#inputValue = inputValue
+    this.#calculateSliceAngles()
+    this.#calculateRemainingPercent()
+    this.#calculateRemainingBaseValue()
+  }
+
+  /**
+   * Adds the input value and collects the total.
+   * Validates the total.
+   *
+   * @param {number} inputValue - The value to be added to the total.
+   * @throws {Error} If the total added values exceed the base value.
+   */
+  #calculateAddedInputValues(inputValue) {
+    const addNewValue = this.#totalAddedInputValues + inputValue
+    if (addNewValue > this.#baseValue) {
       throw new Error("The total added value cannot exceed the base value")
     }
-
-    const percentValue = this.#convertToPercent(inputValue)
-    const { sliceStartAngle, sliceEndAngle } = this.#calculateSliceAngles(percentValue)    
-    const remainingPercent = this.#calculateRemainingPercent()
-
-    return { sliceStartAngle, sliceEndAngle, percentValue, remainingPercent }
+    this.#totalAddedInputValues = addNewValue
   }
 
-  get totalAddedInputValues() {
-    return this.#totalAddedInputValues
+  /**
+   * Calculates the remaining percentage value based on the total added input values and base value and collects it.
+   * Clamp to zero.
+   */
+  #calculateRemainingPercent() {
+    this.#remainingPercent = Math.max(
+      0,
+      100 - (this.#totalAddedInputValues / this.#baseValue) * 100
+    )
   }
 
+  /**
+   * Calculates the remaining value based on subtraction of the total amount of input values from base value.
+   * Clamp to zero.
+   */
+  #calculateRemainingBaseValue() {
+    this.#remainingBaseValue = Math.max(
+      0,
+      this.#baseValue - this.#totalAddedInputValues
+    )
+  }
+
+  /**
+   * Returns the current input value.
+   */
   get inputValue() {
     return this.#inputValue
   }
 
-  get startAngle() {
-    return this.#startAngle
-  }
-
+  /**
+   * Returns the remaining percentage value of the base value.
+   */
   get remainingPercent() {
     return this.#remainingPercent
   }
 
-  get sliceEndAngle() {
-    return this.#sliceEndAngle
+  /**
+   * Returns the radians for the start of the next arc/slice.
+   */
+  get startAngle() {
+    return this.#startAngle
   }
 
+  /**
+   * Returns the arc angle radians of the current slice.
+   */
+  get sliceArcAngle() {
+    return this.#sliceArcAngle
+  }
+
+  /**
+   * Returns the start angle of the current slice.
+   */
   get sliceStartAngle() {
     return this.#sliceStartAngle
   }
 
-    /**
+  /**
+   * Returns the end angle of the current slice.
+   */
+  get sliceEndAngle() {
+    return this.#sliceEndAngle
+  }
+
+  /**
+   * Returns the total of all added input values.
+   */
+  get totalAddedInputValues() {
+    return this.#totalAddedInputValues
+  }
+
+  /**
+   * Returns the remaining value of the base value.
+   */
+  get remainingBaseValue() {
+    return this.#remainingBaseValue
+  }
+
+  /**
    * Validates that the input is of the type 'number', neither positive Infinity, negative Infinity or NaN.
    * The number must be equal to or larger than zero.
    *
@@ -144,7 +189,9 @@ export class InputConverter {
    */
   #numberValidation(number) {
     if (typeof number !== "number" || !Number.isFinite(number)) {
-      throw new Error("The value must be a number, not positive Infinity, not negative Infinity or NaN")
+      throw new Error(
+        "The value must be a number, not positive Infinity, not negative Infinity or NaN"
+      )
     }
     if (number < 0) {
       throw new Error("The value can not be less than zero")
