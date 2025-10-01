@@ -73,7 +73,7 @@ export class BoundaryStyle {
   /**
    * Gets the colour of the pie based on remaining percent of base value.
    *
-   * @param {number} remainingPercentValue - The remaining percentage value of the pie.
+   * @param {number} remainingPercentValue - The remaining percent value of the pie.
    * @returns {string} The colour to set the pie.
    */
   getRemainingPieColour(remainingPercentValue) {

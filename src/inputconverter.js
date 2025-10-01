@@ -1,5 +1,5 @@
 /**
- * @file A module for the InputConverter class. Convert input values into percentages and angles that can be used to create slices of the pie.
+ * @file A module for the InputConverter class. Convert input values into percent and angles that can be used to create slices of the pie.
  *
  * @author Mathilda Segerlund <ms228qs@student.lnu.se>
  * @version 1.0.0
@@ -35,7 +35,7 @@ export class InputConverter {
   }
 
   /**
-   * Converts an input value to a percentage value based on the base value and collects it.
+   * Converts an input value to a percent value based on the base value and collects it.
    */
   #convertToPercent() {
     const percentValue = (this.#inputValue / this.#baseValue) * 100
@@ -43,7 +43,7 @@ export class InputConverter {
   }
 
   /**
-   * Converts a percentage value to an arc angle in radians and collects it.
+   * Converts a percent value to an arc angle in radians and collects it.
    * 100% = 2π. If #inputInPercent = 50, #sliceArcAngle = π
    */
   #convertToAngle() {
@@ -72,7 +72,7 @@ export class InputConverter {
 
   /**
    * Validates the input value. Adds it to the total amount of input values,
-   * converts it to percentage and arc angles. Calculates the remaining percentage and value
+   * converts it to percent and arc angles. Calculates the remaining percent and value
    * of the base value.
    *
    * @param {number} inputValue - The value to be added.
@@ -103,7 +103,7 @@ export class InputConverter {
   }
 
   /**
-   * Calculates the remaining percentage value based on the total added input values and base value and collects it.
+   * Calculates the remaining percent value based on the total added input values and base value and collects it.
    * Clamp to zero.
    */
   #calculateRemainingPercent() {
@@ -132,7 +132,7 @@ export class InputConverter {
   }
 
   /**
-   * Returns the remaining percentage value of the base value.
+   * Returns the remaining percent value of the base value.
    */
   get remainingPercent() {
     return this.#remainingPercent

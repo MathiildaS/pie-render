@@ -46,13 +46,13 @@ export class PieBoundaries {
   }
 
   /**
-   * Determines the state of the pie based on the remaining percentage and the set boundaries.
+   * Determines the state of the pie based on the remaining percent and the set boundaries.
    *
-   * @param {number} remainingPercent - The remaining percentage of the pie.
+   * @param {number} remainingPercent - The remaining percent of the pie.
    * @return {string} - The state of the pie.
    */
   getStateOfPie(remainingPercent) {
-    this.#percentageValidation(remainingPercent)
+    this.#percentValidation(remainingPercent)
     if (remainingPercent <= this.#dangerBoundary) {
       return "danger"
     } else if (remainingPercent <= this.#warningBoundary) {
@@ -88,7 +88,7 @@ export class PieBoundaries {
    * @param {number} number - The number to validate.
    * @throws {Error} If the input is not of the type number, positive Infinity, negative Infinity, NaN or less than zero.
    */
-  #percentageValidation(number) {
+  #percentValidation(number) {
     if (typeof number !== "number" || !Number.isFinite(number)) {
       throw new Error("The value must be a number, not positive Infinity, not negative Infinity or NaN.")
     }
