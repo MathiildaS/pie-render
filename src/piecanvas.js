@@ -25,8 +25,12 @@ export class PieCanvas {
    * Initializes a new instance of the PieCanvas class, the canvas element and the 2D rendering context of it
    *
    * @param {HTMLCanvasElement} canvasElement - The canvas element to draw on.
+   * @throws {Error} If a HTMLCanvasElement is not provided.
    */
   constructor(canvasElement) {
+    if (!(canvasElement instanceof HTMLCanvasElement)) {
+      throw new Error("You must provide a valid HTMLCanvasElement")
+    }
     this.#canvas = canvasElement
     this.#ctx = canvasElement.getContext("2d")
   }
