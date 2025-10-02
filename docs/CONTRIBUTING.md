@@ -1,5 +1,5 @@
 # Contribution guide
-Thank you for your shown interest in **pie-meter**.
+Thank you for your shown interest in **pie-render**.
 Any contributions are highly appreciated!
 
 Below you will find a guide on how to continue working with this project.
@@ -16,11 +16,6 @@ Below you will find a guide on how to continue working with this project.
 npm install
 ```
 
-4. Run tests to make sure all is up and running:
-```bash
-npm test
-```
-
 ### Guidelines
 Make sure to work in branches and keep the Main branch clean and stable.
 
@@ -31,10 +26,7 @@ git checkout -b feature/my-feature
 
 2. Make your changes.
 
-3. Test your changes before commiting them:
-```bash
-npm test
-```
+3. Test your changes before commiting them.
 
 4. Commit your changes:
 ```bash
@@ -48,7 +40,7 @@ git push origin feature/my-feature
 ```
 
 6. Create a pull request to main.
-From the original repository, click "New Pull Request" and describe your changes.
+From the original repository, click "Pull Request" and describe your changes.
 
 7. Wait for your changes to be reviewed.
 
