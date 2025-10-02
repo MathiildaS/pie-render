@@ -1,7 +1,7 @@
 {
   "name": "pie-render",
   "version": "1.0.0",
-  "description": "A simple lib that visualizes remaining and used values as a circular pie on a HTML canvas element.",
+  "description": "A simple JavaScript library that visualizes remaining percent and used values as a circular pie on a HTML canvas element.",
   "main": "index.js",
     "exports": {
     ".": "./index.js"
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/MathiildaS/pie-render.git"
   },
-  "keywords": [],
+  "keywords": [ "pie", "meter", "chart", "html", "javascript", "canvas", "pierender", "circle", "remaining", "percent" ],
   "author": "Mathilda Segerlund <ms228qs@student.lnu.se>",
   "license": "MIT",
   "type": "module",

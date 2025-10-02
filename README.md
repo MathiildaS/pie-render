@@ -1,5 +1,5 @@
 # pie-render
-A JavaScript library that displays remaining percent as an interactive circular pie on a HTML5 canvas.
+A simple JavaScript library that visualizes remaining percent and used values as a circular pie on a HTML canvas element.
 
 ## About
 pie-render draws a circular pie on an canvas. The pie gradually shrinks as you add values against a chosen base amount. Unlike traditional pie charts used for static data visualization, pie-render is designed for scenarios where you want to visualize the remaining capacity. This makes it perfect for budgets, storage usage, displaying remaining lives in games, calorie tracking and more.
