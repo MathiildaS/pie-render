@@ -12,12 +12,25 @@ The focus is on providing users with an immediate, visual overview of how much r
 - **Customizable styling**. Adjust appearance to match your style.
 - **Dependency-free**. No external libraries needed.
 
-## Usage and Example
-### Usage
-TODO
+## API
+const pieRender = new PieRender(canvasElement, baseValue)
 
-### Examples
-TODO
+pieRender.createSlice(value)
+
+
+## Usage and Example
+### Usage example
+``javascript
+import { PieRender } from 'pie-render'
+
+const canvasElement = document.getElementById('myCanvas')
+const pie = new PieRender(canvasElement, 200) // Base value of 200
+pie.setPieBoundaries(60, 30) // Warning at 60%, danger at 30%
+pie.createSlice(80) // Add a slice of 80 
+pie.displayPercentageText(true) // Show remaining percentage text
+pie.setFontColour('#ff00ff') // Custom font colour
+pie.setFontSize(50) // Custom font size
+
 
 ### Installation
 Install the package using npm:
