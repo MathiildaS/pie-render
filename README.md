@@ -11,55 +11,6 @@ pie-render draws a circular pie on an canvas. The pie gradually shrinks as you a
 - Customize the appearance to match your style.
 - No external libraries needed.
 
-## API
-import { PieRender } from 'pie-render'
-
-### Constructor
-**new PieRender(canvasElement, baseValue)**
-Initialize with a HTML5 canvas element and a base value.
-The base value must be a positive number greater than zero.
-Draws the initial circle that represents 100% of the base value and the pie.
-
-### Methods
-**createSlice(inputValue)**
-Adds a value, coverts it to percent and radians/angles and draws it as a slice on the circle.
-Collects and stores the colour and the start and end angle of the slice.
-Redraws the pie on the canvas.
-
-**setPieBoundaries(warningPercent, dangerPercent)**
-Set the boundary in percent for when to reach warning and/or danger.
-The percent value for when the state will change from "ok" to "warning".
-The percent value for when the state will change from "warning" to "danger".
-Redraws the pie on the canvas.
-
-**setPieColour(hexColour)**
-Sets the base colour in hex colour code of the pie.
-Redraws the pie on the canvas.
-
-**setSliceColour(hexColour)**
-Sets the colour in hex colour code of a created slice that will be represented as a "removed" piece of the pie.
-Redraws the pie on the canvas.
-
-**setStateColours(warningColour, dangerColour)**
-Sets the colours in hex colour code for the 'warning' and 'danger' state of the pie.
-Redraws the pie on the canvas.
-
-**displayPercentText(display = false)**
-Determines whether to display text on canvas or not. True to display.
-Redraws the pie on the canvas.
-
-**setFontColour(hexColour)**
-Sets the colour in hex colour code of the text on the canvas. 
-Redraws the pie on the canvas.
-
-**setFontSize(fontSize)**
-Sets the size in px of the text drawn on the canvas. 
-Redraws the pie on the canvas.
-
-**getCurrentStateOfPie()**
-Returns an object with the current colour settings, pie boundaries, angles, text settings and remaining values.
-Redraws the pie on the canvas.
-
 ## Usage and Example
 The package need a HTML5 canvas element to render the pie on.
 Create a canvas element in your HTML
@@ -95,13 +46,63 @@ pieRender.setFontSize(50) // Custom font size
 ![Custom pie with text](./img/customexample1.png)
 ![Custom pie without text](./img/customexample2.png)
 
-### Installation
+## API
+import { PieRender } from 'pie-render'
+
+### Constructor
+**new PieRender(canvasElement, baseValue)**\
+Initialize with a HTML5 canvas element and a base value.
+The base value must be a positive number greater than zero.
+Draws the initial circle that represents 100% of the base value and the pie.
+
+### Methods
+**createSlice(inputValue)**\
+Adds a value, coverts it to percent and radians/angles and draws it as a slice on the circle.
+Collects and stores the colour and the start and end angle of the slice.
+Redraws the pie on the canvas.
+
+**setPieBoundaries(warningPercent, dangerPercent)**\
+Set the boundary in percent for when to reach warning and/or danger.
+The percent value for when the state will change from "ok" to "warning".
+The percent value for when the state will change from "warning" to "danger".
+Redraws the pie on the canvas.
+
+**setPieColour(hexColour)**\
+Sets the base colour in hex colour code of the pie.
+Redraws the pie on the canvas.
+
+**setSliceColour(hexColour)**\
+Sets the colour in hex colour code of a created slice that will be represented as a "removed" piece of the pie.
+Redraws the pie on the canvas.
+
+**setStateColours(warningColour, dangerColour)**\
+Sets the colours in hex colour code for the 'warning' and 'danger' state of the pie.
+Redraws the pie on the canvas.
+
+**displayPercentText(display = false)**\
+Determines whether to display text on canvas or not. True to display.
+Redraws the pie on the canvas.
+
+**setFontColour(hexColour)**\
+Sets the colour in hex colour code of the text on the canvas. 
+Redraws the pie on the canvas.
+
+**setFontSize(fontSize)**\
+Sets the size in px of the text drawn on the canvas. 
+Redraws the pie on the canvas.
+
+**getCurrentStateOfPie()**\
+Returns an object with the current colour settings, pie boundaries, angles, text settings and remaining values.
+Redraws the pie on the canvas.
+
+## Installation
 Install the package using npm:
+
 ```bash
 npm install pie-render
 ```
 
-### Requirements
+## Requirements
 This package requires ES6 module and HTML5 support.
 
 ## Testing
