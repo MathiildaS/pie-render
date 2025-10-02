@@ -1,6 +1,6 @@
 # Test report
-This module has been tested using manual tests.
-The manual tests verifies the functionality in all individual classes as well as them all together.
+This module has been manually tested.
+The manual tests verifies the functionality of all individual classes as well as them all together.
 
 Automated tests are yet to be implemented.
 
