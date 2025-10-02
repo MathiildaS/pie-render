@@ -232,7 +232,7 @@ export class PieRender {
    */
   #setRemainingPercentText() {
     try {
-      this.#pieCanvas.remainingValue = this.#inputConverter.remainingPercent
+      this.#pieCanvas.remainingValue = Math.round(this.#inputConverter.remainingPercent)
       this.#pieCanvas.displayTextOnCanvas()
     } catch (error) {
       console.error("An error occured when drawing the text on canvas: " + error.message)
