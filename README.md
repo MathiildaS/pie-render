@@ -106,7 +106,8 @@ npm install pie-render
 This package requires ES6 module and HTML5 support.
 
 ## Testing
-The package has been continuously tested throughout development by manual tests in a test application
+The package has been continuously tested throughout development by manual tests in a test application.
+Further testing is required to ensure the quality of this library.
 
 See [testreport](docs/testrapport.md) for details.
 
