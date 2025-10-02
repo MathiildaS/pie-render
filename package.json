@@ -2,13 +2,13 @@
   "name": "pie-render",
   "version": "1.0.0",
   "description": "A simple JavaScript library that visualizes remaining percent and used values as a circular pie on a HTML canvas element.",
-  "main": "index.js",
+  "main": "./index.js",
     "exports": {
     ".": "./index.js"
   },
   "files": [
   "index.js",
-  "pierender.js"
+  "src/"
 ],
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
