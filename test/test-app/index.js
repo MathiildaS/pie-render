@@ -4,6 +4,62 @@ import { BoundaryStyle } from "../../src/boundarystyle.js"
 import { PieBoundaries } from "../../src/pieboundaries.js"
 import { PieRender } from "../../src/pierender.js"
 
+/**
+ * HOW TO RUN THESE TESTS MANUALLY
+ * --------------------------------
+ * 1. Open the project in your browser with Live Server or Vite
+ * 2. Open the browser console
+ * 3. Uncomment one test function call at a time .
+ * 4. Observe the printed results or error messages in the console.
+ * 6. When done, comment it out again and move on to the next test.
+ */
+
+//-----------TEST PieCanvas--------------
+
+//testDefaultValues()
+//testCustomValues()
+//testCustomText()
+//testColourValidation()
+//testNumberValidation()
+
+//----------TEST BoundaryStyle-----------
+
+//testDefaultBoundaryColours()
+//testCustomBoundaryColours()
+//testBoundaryColourValidation()
+//testRemainingPercentColour()
+
+//----------TEST InputConverter----------
+
+//testInitialInputConverter()
+//testAddInput()
+//testBaseValueValidation()
+//testAddInputValidation()
+
+//----------TEST PieBoundaries-----------
+
+//testDefaultBoundaryValues()
+//testCustomBoundaryValues()
+//testDefaultStateOfPie()
+//testCustomStateOfPie()
+//testBoundaryValueValidation()
+//testStateOfPieValidation()
+
+//--------TEST ALL TOGETHER-----------
+
+//testClassesTogether()
+
+//--------TEST PieRender-----------
+
+//testDefaultPie()
+//testCustomBoundariesColours()
+//testDrawStoredSlices()
+//testSetBoundariesValues()
+//testSetOnlyWarningBoundary()
+//testSetOnlyDangerBoundary()
+//testTextSizeAndColour()
+
+
 //------------TEST PieCanvas-------------
 
 // Collect the canvas element and create an instance of PieCanvas.
@@ -535,42 +591,4 @@ function testTextSizeAndColour() {
   pieRender.setFontSize(50)
 }
 
-//-----------TEST PieCanvas--------------
 
-//testDefaultValues()
-//testCustomValues()
-//testCustomText()
-//testColourValidation()
-//testNumberValidation()
-
-//----------TEST BoundaryStyle-----------
-//testDefaultBoundaryColours()
-//testCustomBoundaryColours()
-//testBoundaryColourValidation()
-//testRemainingPercentColour()
-
-//----------TEST InputConverter----------
-//testInitialInputConverter()
-//testAddInput()
-//testBaseValueValidation()
-//testAddInputValidation()
-
-//----------TEST PieBoundaries-----------
-//testDefaultBoundaryValues()
-//testCustomBoundaryValues()
-//testDefaultStateOfPie()
-//testCustomStateOfPie()
-//testBoundaryValueValidation()
-//testStateOfPieValidation()
-
-//--------TEST ALL TOGETHER-----------
-//testClassesTogether()
-
-//--------TEST PieRender-----------
-//testDefaultPie()
-//testCustomBoundariesColours()
-//testDrawStoredSlices()
-//testSetBoundariesValues()
-//testSetOnlyWarningBoundary()
-//testSetOnlyDangerBoundary()
-//testTextSizeAndColour()
